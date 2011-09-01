@@ -15,4 +15,6 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
+include(../userconfig.uconf)
+
 SOURCES += main.cpp
