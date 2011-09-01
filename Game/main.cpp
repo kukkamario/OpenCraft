@@ -1,5 +1,6 @@
 #include <QImage>
-#include "glinclude.h"
+#include <QDebug>
+#include "glinclude/glinclude.h"
 #include <stdlib.h>
 #include <math.h>
 #include <cstdio>
@@ -10,46 +11,110 @@ GLuint textureId;
 
 void GLFWCALL windowResize( int width, int height )
 {
-	glMatrixMode(GL_PROJECTION);
-	glPerspective(60,(float)width / (float)height,1,1000);
+    glMatrixMode(GL_PROJECTION);
+    gluPerspective(60,(float)width / (float)height,1,1000);
     glViewport(0,0,width,height);
-	glMatrixMode(GL_MODELVIEW);
+    glMatrixMode(GL_MODELVIEW);
 }
 
 void renderScene()
 {
-	gluLookAt(0,0,10,0,0,0,0,1,0);
-	glBegin(GL_QUADS);
-	
-	glEnd();
+    gluLookAt(0,0,10,0,0,0,0,1,0);
+    glRotated(0.2,0.4,0.5,-0.1);
+    glBegin(GL_QUADS);
+
+    //Takaseinä:
+    glVertex3d(-0.5,-0.5,0.5);
+    glVertex3d(0.5,-0.5,0.5);
+    glVertex3d(-0.5,0.5,0.5);
+    glVertex3d(0.5,0.5,0.5);
+
+    //Etuseinä:
+    glVertex3d(-0.5,-0.5,-0.5);
+    glVertex3d(0.5,-0.5,-0.5);
+    glVertex3d(-0.5,0.5,-0.5);
+    glVertex3d(0.5,0.5,-0.5);
+
+    //Oikea sivu:
+    glVertex3d(0.5,-0.5,0.5);
+    glVertex3d(0.5,-0.5,-0.5);
+    glVertex3d(0.5,0.5,-0.5);
+    glVertex3d(0.5,0.5,0.5);
+
+    //Vasen sivu:
+    glVertex3d(-0.5,-0.5,0.5);
+    glVertex3d(-0.5,-0.5,-0.5);
+    glVertex3d(-0.5,0.5,-0.5);
+    glVertex3d(-0.5,0.5,0.5);
+
+    //Pohja:
+    glVertex3d(-0.5,-0.5,-0.5);
+    glVertex3d(-0.5,-0.5,0.5);
+    glVertex3d(0.5,-0.5,0.5);
+    glVertex3d(0.5,-0.5,-0.5);
+
+    //Kansi:
+    glVertex3d(-0.5,0.5,-0.5);
+    glVertex3d(-0.5,0.5,0.5);
+    glVertex3d(0.5,0.5,0.5);
+    glVertex3d(0.5,0.5,-0.5);
+    glEnd();
 }
 
 
-int main(int argc, char **argv)
+int main( void )
 {
-    if (!loadExtension())
+    qDebug("Started");
+    int running = GL_TRUE;
+    // Initialize GLFW
+    if( !glfwInit() )
     {
-        printf("Your graphicscard doesn't support required opengl extensions");
-        return 0;
+        exit( EXIT_FAILURE );
+    }
+    // Open an OpenGL window
+    if( !glfwOpenWindow( 800,600, 8,8,8,8,24,0, GLFW_WINDOW ) )
+    {
+        glfwTerminate();
+        exit( EXIT_FAILURE );
     }
 
+    if (!loadExtension())
+    {
+        qCritical("Your graphicscard doesn't support required OpenGL extensions...");
+        glfwCloseWindow();
+        glfwTerminate();
+        exit(EXIT_FAILURE);
+    }
 
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-    glutInitWindowPosition(100,100);
-    glutInitWindowSize(320,320);
-    glutCreateWindow("OpenCraft");
-    windowResize(320,320);
-
-    glutDisplayFunc(renderScene);
-    glutReshapeFunc(windowResize);
-
-
+    glfwSetWindowTitle("OpenCraft");
+    qDebug("Window open");
 
 
-    glutIdleFunc(renderScene);
+    glfwSetWindowSizeCallback(windowResize);
 
 
-    glutMainLoop();
+    glShadeModel(GL_SMOOTH);							// Enable Smooth Shading
+    glClearColor(0.0f, 0.0f, 0.0f, 0.5f);				// Black Background
+    glClearDepth(1.0f);									// Depth Buffer Setup
+    glEnable(GL_DEPTH_TEST);							// Enables Depth Testing
+    glDepthFunc(GL_LEQUAL);								// The Type Of Depth Testing To Do
+    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Really Nice Perspective Calculations
 
+    windowResize(300,300);
+    // Main loop
+    while( running )
+    {
+        glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        renderScene();
+
+        glfwSwapBuffers();
+
+
+        running = !glfwGetKey( GLFW_KEY_ESC ) &&
+        glfwGetWindowParam( GLFW_OPENED );
+    }
+
+    glfwTerminate();
+    exit( EXIT_SUCCESS );
 }

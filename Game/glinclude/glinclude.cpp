@@ -8,7 +8,7 @@ PFNGLDELETEBUFFERSARBPROC mglDeleteBuffersARB;
 
 bool loadExtension()
 {
-	if (!glfwExtensionSupported("GL_ARB_vertex_buffer_object"))
+        if (glfwExtensionSupported("GL_ARB_vertex_buffer_object") == GL_FALSE)
 	{
 		return false;
 	}
@@ -36,6 +36,6 @@ void glBufferDataARB(GLenum target,GLsizeiptrARB size,const GLvoid *data,GLenum 
 
 void glDeleteBufferARB(GLsizei n,GLuint *buffers)
 {
-	mglDeleteBuffersARB(size,buffers);
+        mglDeleteBuffersARB(n,buffers);
 }
 

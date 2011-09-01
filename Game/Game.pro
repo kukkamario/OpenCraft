@@ -4,11 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += core gui xml
+QT       += core gui opengl
 
 TARGET = Game
 
-CONFIG += copy_dir_files
+
 
 TEMPLATE = app
 
@@ -23,6 +23,3 @@ HEADERS += \
 include(../userconfig.pri)
 
 
-imedia.path = $$(DESTDIR)/Media
-imedia.files = Media
-INSTALLS += imedia
