@@ -1,8 +1,10 @@
 win32{
-	INCLUDEPATH += "../Using"
-	debug{
-		LIBS += -L"../Using/freeglut-2.6.0/VisualStudio2008Static/Debug -lfreeglut_static
-	}else{
-		LIBS += -L"../Using/freeglut-2.6.0/VisualStudio2008Static/Release -lfreeglut_static
-	}
+    INCLUDEPATH += "../Using"
+    debug{
+        LIBS += -L"../Using/freeglut-2.6.0/VisualStudio2008Static/Debug -lfreeglut_static
+        LIBS += -L"../Using/glfw-2.7.2/support/msvc100/Debug" -lGLFW
+    }else{
+        LIBS += -L"../Using/freeglut-2.6.0/VisualStudio2008Static/Release -lfreeglut_static
+        LIBS += -L"../Using/glfw-2.7.2/support/msvc100/Release" -lGLFW
+    }
 }

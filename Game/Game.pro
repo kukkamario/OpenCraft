@@ -4,17 +4,25 @@
 #
 #-------------------------------------------------
 
-QT       += core
-
-QT       -= gui
+QT       += core gui xml
 
 TARGET = Game
-CONFIG   += console
-CONFIG   -= app_bundle
+
+CONFIG += copy_dir_files
 
 TEMPLATE = app
 
 
-include(../userconfig.uconf)
+SOURCES += main.cpp \
+    glinclude/glinclude.cpp
 
-SOURCES += main.cpp
+HEADERS += \
+    glinclude/glinclude.h
+
+
+include(../userconfig.pri)
+
+
+imedia.path = $$(DESTDIR)/Media
+imedia.files = Media
+INSTALLS += imedia
