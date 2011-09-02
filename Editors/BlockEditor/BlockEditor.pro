@@ -8,7 +8,7 @@ QT       += core gui opengl
 
 TARGET = BlockEditor
 TEMPLATE = app
-
+CONFIG += qt
 
 SOURCES += main.cpp\
         mainwindow.cpp

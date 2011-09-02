@@ -6,115 +6,97 @@
 #include <cstdio>
 
 
-GLuint textureId;
+void changeSize(int w, int h) {
 
+        // Prevent a divide by zero, when window is too short
+        // (you cant make a window of zero width).
+        if (h == 0)
+                h = 1;
 
-void GLFWCALL windowResize( int width, int height )
-{
-    glMatrixMode(GL_PROJECTION);
-    gluPerspective(60,(float)width / (float)height,1,1000);
-    glViewport(0,0,width,height);
-    glMatrixMode(GL_MODELVIEW);
+        float ratio =  w * 1.0 / h;
+
+        // Use the Projection Matrix
+        glMatrixMode(GL_PROJECTION);
+
+        // Reset Matrix
+        glLoadIdentity();
+
+        // Set the viewport to be the entire window
+        glViewport(0, 0, w, h);
+
+        // Set the correct perspective.
+        gluPerspective(45.0f, ratio, 0.1f, 100.0f);
+
+        // Get Back to the Modelview
+        glMatrixMode(GL_MODELVIEW);
 }
 
-void renderScene()
+float angle = 0.0f;
+
+void renderScene(void)
 {
-    gluLookAt(0,0,10,0,0,0,0,1,0);
-    glRotated(0.2,0.4,0.5,-0.1);
+
+    // Clear Color and Depth Buffers
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // Reset transformations
+    glLoadIdentity();
+    // Set the camera
+    gluLookAt(	0.0f, 0.0f, 10.0f,
+                            0.0f, 0.0f,  0.0f,
+                            0.0f, 1.0f,  0.0f);
+
+    glRotatef(angle, 0.2f, 0.8f, 0.0f);
+
     glBegin(GL_QUADS);
 
-    //Takaseinä:
-    glVertex3d(-0.5,-0.5,0.5);
-    glVertex3d(0.5,-0.5,0.5);
-    glVertex3d(-0.5,0.5,0.5);
-    glVertex3d(0.5,0.5,0.5);
-
-    //Etuseinä:
-    glVertex3d(-0.5,-0.5,-0.5);
-    glVertex3d(0.5,-0.5,-0.5);
-    glVertex3d(-0.5,0.5,-0.5);
-    glVertex3d(0.5,0.5,-0.5);
-
-    //Oikea sivu:
-    glVertex3d(0.5,-0.5,0.5);
-    glVertex3d(0.5,-0.5,-0.5);
-    glVertex3d(0.5,0.5,-0.5);
-    glVertex3d(0.5,0.5,0.5);
-
-    //Vasen sivu:
-    glVertex3d(-0.5,-0.5,0.5);
-    glVertex3d(-0.5,-0.5,-0.5);
-    glVertex3d(-0.5,0.5,-0.5);
-    glVertex3d(-0.5,0.5,0.5);
-
-    //Pohja:
-    glVertex3d(-0.5,-0.5,-0.5);
-    glVertex3d(-0.5,-0.5,0.5);
-    glVertex3d(0.5,-0.5,0.5);
-    glVertex3d(0.5,-0.5,-0.5);
-
-    //Kansi:
-    glVertex3d(-0.5,0.5,-0.5);
-    glVertex3d(-0.5,0.5,0.5);
-    glVertex3d(0.5,0.5,0.5);
-    glVertex3d(0.5,0.5,-0.5);
+    glBegin(GL_QUADS);                          // Start Drawing Quads
+        // Bottom Face
+        glVertex3f(-1.0f, -1.0f, -1.0f);  // Top Right Of The Texture and Quad
+        glVertex3f( 1.0f, -1.0f, -1.0f);  // Top Left Of The Texture and Quad
+        glVertex3f( 1.0f, -1.0f,  1.0f);  // Bottom Left Of The Texture and Quad
+        glVertex3f(-1.0f, -1.0f,  1.0f);  // Bottom Right Of The Texture and Quad
+        // Front Face
+        glVertex3f(-1.0f, -1.0f,  1.0f);  // Bottom Left Of The Texture and Quad
+        glVertex3f( 1.0f, -1.0f,  1.0f);  // Bottom Right Of The Texture and Quad
+        glVertex3f( 1.0f,  1.0f,  1.0f);  // Top Right Of The Texture and Quad
+        glVertex3f(-1.0f,  1.0f,  1.0f);  // Top Left Of The Texture and Quad
+        // Back Face
+        glVertex3f(-1.0f, -1.0f, -1.0f);  // Bottom Right Of The Texture and Quad
+        glVertex3f(-1.0f,  1.0f, -1.0f);  // Top Right Of The Texture and Quad
+        glVertex3f( 1.0f,  1.0f, -1.0f);  // Top Left Of The Texture and Quad
+        glVertex3f( 1.0f, -1.0f, -1.0f);  // Bottom Left Of The Texture and Quad
+        // Right face
+        glVertex3f( 1.0f, -1.0f, -1.0f);  // Bottom Right Of The Texture and Quad
+        glVertex3f( 1.0f,  1.0f, -1.0f);  // Top Right Of The Texture and Quad
+        glVertex3f( 1.0f,  1.0f,  1.0f);  // Top Left Of The Texture and Quad
+        glVertex3f( 1.0f, -1.0f,  1.0f);  // Bottom Left Of The Texture and Quad
+        // Left Face
+        glVertex3f(-1.0f, -1.0f, -1.0f);  // Bottom Left Of The Texture and Quad
+        glVertex3f(-1.0f, -1.0f,  1.0f);  // Bottom Right Of The Texture and Quad
+        glVertex3f(-1.0f,  1.0f,  1.0f);  // Top Right Of The Texture and Quad
+        glVertex3f(-1.0f,  1.0f, -1.0f);  // Top Left Of The Texture and Quad
     glEnd();
+
+    angle+=0.1f;
+
+    glutSwapBuffers();
 }
 
+void main(int argc, char **argv) {
 
-int main( void )
-{
-    qDebug("Started");
-    int running = GL_TRUE;
-    // Initialize GLFW
-    if( !glfwInit() )
-    {
-        exit( EXIT_FAILURE );
-    }
-    // Open an OpenGL window
-    if( !glfwOpenWindow( 800,600, 8,8,8,8,24,0, GLFW_WINDOW ) )
-    {
-        glfwTerminate();
-        exit( EXIT_FAILURE );
-    }
+        // init GLUT and create window
+        glutInit(&argc, argv);
+        glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
+        glutInitWindowPosition(100,100);
+        glutInitWindowSize(320,320);
+        glutCreateWindow("Lighthouse3D- GLUT Tutorial");
 
-    if (!loadExtension())
-    {
-        qCritical("Your graphicscard doesn't support required OpenGL extensions...");
-        glfwCloseWindow();
-        glfwTerminate();
-        exit(EXIT_FAILURE);
-    }
+        // register callbacks
+        glutDisplayFunc(renderScene);
+        glutReshapeFunc(changeSize);
+        glutIdleFunc(renderScene);
 
-    glfwSetWindowTitle("OpenCraft");
-    qDebug("Window open");
-
-
-    glfwSetWindowSizeCallback(windowResize);
-
-
-    glShadeModel(GL_SMOOTH);							// Enable Smooth Shading
-    glClearColor(0.0f, 0.0f, 0.0f, 0.5f);				// Black Background
-    glClearDepth(1.0f);									// Depth Buffer Setup
-    glEnable(GL_DEPTH_TEST);							// Enables Depth Testing
-    glDepthFunc(GL_LEQUAL);								// The Type Of Depth Testing To Do
-    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Really Nice Perspective Calculations
-
-    windowResize(300,300);
-    // Main loop
-    while( running )
-    {
-        glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        renderScene();
-
-        glfwSwapBuffers();
-
-
-        running = !glfwGetKey( GLFW_KEY_ESC ) &&
-        glfwGetWindowParam( GLFW_OPENED );
-    }
-
-    glfwTerminate();
-    exit( EXIT_SUCCESS );
+        // enter GLUT event processing cycle
+        glutMainLoop();
 }
