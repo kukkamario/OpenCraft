@@ -17,13 +17,22 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    glinclude/glinclude.cpp
+    glinclude/glinclude.cpp \
+    glpainter.cpp
 
 HEADERS += \
-    glinclude/glinclude.h
+    glinclude/glinclude.h \
+    glpainter.h
 
 
 include(../userconfig.pri)
+
+
+
+
+
+
+
 
 
 

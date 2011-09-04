@@ -6,17 +6,18 @@ PFNGLBINDBUFFERARBPROC mglBindBufferARB;
 PFNGLBUFFERDATAARBPROC mglBufferDataARB;
 PFNGLDELETEBUFFERSARBPROC mglDeleteBuffersARB;
 
+
 bool loadExtension()
 {
-        if (glfwExtensionSupported("GL_ARB_vertex_buffer_object") == GL_FALSE)
-	{
-		return false;
-	}
-	mglGenBuffersARB  = (PFNGLGENBUFFERSARBPROC)glfwGetProcAddress("glGenBuffersARB");
-	mglBindBufferARB = (PFNGLBINDBUFFERARBPROC) glfwGetProcAddress("glBindBufferARB");
-	mglBufferDataARB = (PFNGLBUFFERDATAARBPROC) glfwGetProcAddress("glBufferDataARB");
-	mglDeleteBuffersARB = (PFNGLDELETEBUFFERSARBPROC) glfwGetProcAddress("glDeleteBuffersARB");
-	return true;
+    if (glutExtensionSupported("GL_ARB_vertex_buffer_object") == GL_FALSE)
+    {
+        return false;
+    }
+    mglGenBuffersARB  = (PFNGLGENBUFFERSARBPROC)glutGetProcAddress("glGenBuffersARB");
+    mglBindBufferARB = (PFNGLBINDBUFFERARBPROC)glutGetProcAddress("glBindBufferARB");
+    mglBufferDataARB = (PFNGLBUFFERDATAARBPROC)glutGetProcAddress("glBufferDataARB");
+    mglDeleteBuffersARB = (PFNGLDELETEBUFFERSARBPROC)glutGetProcAddress("glDeleteBuffersARB");
+    return true;
 }
 
 void glGenBuffersARB(GLsizei n,GLuint *buffers)

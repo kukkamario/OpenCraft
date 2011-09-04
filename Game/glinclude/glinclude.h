@@ -5,7 +5,6 @@
 #include "glext.h"
 #include <gl\GLU.h>
 #include "freeglut.h"
-#include "glfw.h"
 
 bool loadExtension();
 
