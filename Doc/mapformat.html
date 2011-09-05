@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="fi" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>OpenCraft map file format</title>
+<style type="text/css">
+div. {
+	padding: 5px;
+	border: medium groove #000000;
+}
+</style>
+</head>
+
+<body>
+		OpenCraft map file format<br />
+		<br />
+		<br/>
+	<div>
+		int
+		magic number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		//tarkistus numero<br />
+		int
+		format version number<br />
+		<br />
+		//Player data<br />
+		int player count //moninpeliä ajatellen... yksinpelissä aina 1<br />
+		<div>
+			char&nbsp; playername[64] //pelaajan nimi<br />
+			ushort health&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			//elkut<br />
+			<br />
+			//inventory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			//näitä on jotain 20? Riippuen repun ja muiden slottien määrästä<br />
+			<br />
+&nbsp;<div>
+				//inventory item<br />
+				ushort id<br />
+				ushort damage<br />
+				ushort stacksize</div>
+		</div>
+		<br />
+		<br />
+		<br />
+		<br />
+		//Chunk<br />
+		<div>
+			uchar using&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			//Onko chunkki käytössä vai tyhjä<br />
+			int size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			//Koko chunkin viemä tila. (Mikäli tyhjä niin tyhjän tilan koko) 
+			Sisältää myös nämä.<br />
+			int x,y,z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			//Chunkin koordinaatit. Keskimmäinen chunk 0,0,0 ylempi 0,1,0 etc.<br />
+			<br />
+			int blockdata length&nbsp; // maksimissaan 500kt = 50*50*50*4t<br />
+			//block data<br />
+			<div>
+				uchar blocktype<br />
+				<br />
+				+3 bytes additional block data&nbsp; //Ei kaikilla...</div>
+				<br />
+			<br />
+			//mob data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			//näitä mobien määrän verran...<br />
+			<div>
+				uchar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+				//mobin tyyppi<br />
+				uint id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+				//mobin järjestysnumero<br />
+				double x,y,z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+				//koordinaatit<br />
+				ushort health&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+				//elkut<br />
+			</div>
+			<br />
+				
+			<br />
+			//item data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			//maassa olevat tavarat<br />
+			<div>
+				uchar x,y,z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+				//koordinaatit minkä blockin kohdalla ovat. Pientä säästöä... :D<br />
+				ushort itemid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+				//tavaran tyyppi</div>
+			<br />
+			<br />
+			<br />
+			//meta data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			//Kaikki muu data. mm. arkun sisältö<br />
+			<div>
+				ushort metaId&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+				//id jonka avulla data löydetään<br />
+				ushort data length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+				//datan pituus tavuina<br />
+				<br />
+				*data*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+				//varsinainen data</div>
+			<br />
+		</div>
+		<br />
+	</div>
+
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>Alussa kun luodaan kenttä kaikki kentät tallennetaan yksinkertaisesti 
+		tuossa muodossa, niin että kaikki chunkit ovat käytössä ja yhtään 
+		ylimääräistä ei ole. Kun chunkkia tallennetaan uudestaan merkataan sen 
+		vanha paikka käyttämättömäksi ("using" on nolla) ja mikäli siinä kohdin 
+		sattuu olemaan toinenkin tyhjä chunkki niin ne liitetää yhdeksi 
+		isommaksi tyhjäksi chunkiksi. Sitten katsotaan löytyykö yhtään niin isoa 
+		tyhjää chunkkia mihin tallennettava chunkki mahtuisi. Mikäli löytyy, se 
+		tallennetaan siihen paikalle ja mahdollisesti ylijäävään tilaan luodaan 
+		tyhjä chunkki. Jos taas paikkaa chunkille ei löydy niin se kirjoitetaan 
+		tiedoston perään. Tiedoston muotoilu ja chunkkien headerit pidetään 
+		kokoajan muistissa, niin että tiedostoa ei tarvitse kirjoittaessa lukea 
+		tippaakaan ja lukiessakin ei tarvitse etsiä kohtaa mistä pitäisi lukea. 
+		Koko kartta menee yhteen tiedostoon. :D </p>
+
+</body>
+
+</html>
