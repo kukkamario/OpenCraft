@@ -21,7 +21,8 @@ SOURCES += main.cpp \
     glpainter.cpp \
     screenstatemanager.cpp \
     menuscreenstate.cpp \
-    gamescreenstate.cpp
+    gamescreenstate.cpp \
+    blocktype.cpp
 
 HEADERS += \
     glinclude/glinclude.h \
@@ -29,10 +30,13 @@ HEADERS += \
     screenstatemanager.h \
     screenstate.h \
     menuscreenstate.h \
-    gamescreenstate.h
+    gamescreenstate.h \
+    blocktype.h
 
 
 include(../userconfig.pri)
+
+
 
 
 
