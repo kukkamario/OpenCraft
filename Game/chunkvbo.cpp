@@ -3,3 +3,8 @@
 ChunkVBO::ChunkVBO()
 {
 }
+
+void ChunkVBO::draw()
+{
+
+}
