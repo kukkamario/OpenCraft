@@ -19,6 +19,7 @@ PFNGLGETUNIFORMLOCATIONARBPROC   glGetUniformLocationARB;
 PFNGLUNIFORM1IARBPROC            glUniform1iARB;
 PFNGLACTIVETEXTUREARBPROC        glActiveTextureARB;
 PFNGLGETINFOLOGARBPROC           glGetInfoLogARB;
+PFNGLDELETEOBJECTARBPROC         glDeleteObjectARB;
 
 bool mShaders = true;
 
@@ -40,17 +41,18 @@ bool loadExtension()
     }
     else
     {
-        glCreateProgramObjectARB = (PFNGLCREATEPROGRAMOBJECTARBPROC)wglGetProcAddress("glCreateProgramObjectARB");
-        glUseProgramObjectARB = (PFNGLUSEPROGRAMOBJECTARBPROC)wglGetProcAddress("glUseProgramObjectARB");
-        glCreateShaderObjectARB = (PFNGLCREATESHADEROBJECTARBPROC)wglGetProcAddress("glCreateShaderObjectARB");
-        glShaderSourceARB = (PFNGLSHADERSOURCEARBPROC)wglGetProcAddress("glShaderSourceARB");
-        glCompileShaderARB = (PFNGLCOMPILESHADERARBPROC)wglGetProcAddress("glCompileShaderARB");
-        glGetObjectParameterivARB = (PFNGLGETOBJECTPARAMETERIVARBPROC)wglGetProcAddress("glGetObjectParameterivARB");
-        glAttachObjectARB = (PFNGLATTACHOBJECTARBPROC)wglGetProcAddress("glAttachObjectARB");
-        glGetInfoLogARB = (PFNGLGETINFOLOGARBPROC)wglGetProcAddress("glGetInfoLogARB");
-        glLinkProgramARB = (PFNGLLINKPROGRAMARBPROC)wglGetProcAddress("glLinkProgramARB");
-        glGetUniformLocationARB = (PFNGLGETUNIFORMLOCATIONARBPROC)wglGetProcAddress("glGetUniformLocationARB");
-        glUniform1iARB = (PFNGLUNIFORM1IARBPROC)wglGetProcAddress("glUniform1iARB");
+        glCreateProgramObjectARB = (PFNGLCREATEPROGRAMOBJECTARBPROC)glutGetProcAddress("glCreateProgramObjectARB");
+        glUseProgramObjectARB = (PFNGLUSEPROGRAMOBJECTARBPROC)glutGetProcAddress("glUseProgramObjectARB");
+        glCreateShaderObjectARB = (PFNGLCREATESHADEROBJECTARBPROC)glutGetProcAddress("glCreateShaderObjectARB");
+        glShaderSourceARB = (PFNGLSHADERSOURCEARBPROC)glutGetProcAddress("glShaderSourceARB");
+        glCompileShaderARB = (PFNGLCOMPILESHADERARBPROC)glutGetProcAddress("glCompileShaderARB");
+        glGetObjectParameterivARB = (PFNGLGETOBJECTPARAMETERIVARBPROC)glutGetProcAddress("glGetObjectParameterivARB");
+        glAttachObjectARB = (PFNGLATTACHOBJECTARBPROC)glutGetProcAddress("glAttachObjectARB");
+        glGetInfoLogARB = (PFNGLGETINFOLOGARBPROC)glutGetProcAddress("glGetInfoLogARB");
+        glLinkProgramARB = (PFNGLLINKPROGRAMARBPROC)glutGetProcAddress("glLinkProgramARB");
+        glGetUniformLocationARB = (PFNGLGETUNIFORMLOCATIONARBPROC)glutGetProcAddress("glGetUniformLocationARB");
+        glUniform1iARB = (PFNGLUNIFORM1IARBPROC)glutGetProcAddress("glUniform1iARB");
+        glDeleteObjectARB = (PFNGLDELETEOBJECTARBPROC)glutGetProcAddress("glDeleteObjectARB");
     }
 
     return true;
@@ -58,22 +60,22 @@ bool loadExtension()
 
 void glUseProgram(GLuint program)
 {
-    mglUseProgramARB(program);
+    glUseProgramObjectARB(program);
 }
 
 void glCreateShader(GLenum shaderType)
 {
-    mglCreateShaderARB(shaderType);
+    glCreateShaderObjectARB(shaderType);
 }
 
 void glAttachShader(GLuint program,GLuint shader)
 {
-    mglAttachShaderARB(program,shader);
+    glAttachObjectARB(program,shader);
 }
 
 void glCompileShader(GLuint shader)
 {
-    mglCompileShaderARB(shader);
+    glCompileShaderARB(shader);
 }
 
 void glUniform1i(GLuint location,GLuint value)
@@ -88,22 +90,22 @@ void glGetUniformLocation(GLuint program,const char *name)
 
 void glCreateProgram()
 {
-    mglCreateProgramARB();
+    glCreateProgramObjectARB();
 }
 
-void glGetInfoLog(GLuint program,GLuint maxLength,GLuint *length,char *text)
+void glGetInfoLog(GLuint program,GLsizei maxLength,GLsizei *length,char *text)
 {
     glGetInfoLogARB(program,maxLength,length,text);
 }
 
 void glLinkProgram(GLuint program)
 {
-    mglLinkProgramARB(program);
+    glLinkProgramARB(program);
 }
 
 void glDeleteObject(GLuint object)
 {
-    mglDeleteObjectARB(object);
+    glDeleteObjectARB(object);
 }
 
 

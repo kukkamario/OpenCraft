@@ -34,7 +34,18 @@ HEADERS += \
     blocktype.h
 
 
-include(../userconfig.pri)
+win32{
+    DEFINES += OC_WINDOWS
+    DEFINES += FREEGLUT_STATIC
+}
+
+CONFIG( debug, debug|release ) {
+    LIBS += -L"libs" -lfreeglut_static_d
+} else {
+    LIBS += -L"libs" -lfreeglut_static
+}
+
+
 
 
 

@@ -55,19 +55,23 @@ void mouseWheelEvent(int wheel,int direction,int,int)
 
 int main(int argc, char **argv)
 {
-    if (!ScreenStateManager::instance()->init())
-    {
-        qCritical("Can't initialize ScreenStateManager.");
-        return 1;
-    }
+
 
     // init GLUT and create window
     glutInit(&argc, argv);
+
+
+
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA | GLUT_ALPHA);
     glutInitWindowPosition(100,100);
     glutInitWindowSize(320,320);
     glutCreateWindow("OpenCraft");
 
+    if (!ScreenStateManager::instance()->init())
+    {
+        qCritical("Can't initialize ScreenStateManager.");
+        return 1;
+    }
     // register callbacks
     glutDisplayFunc(&renderScene);
     glutReshapeFunc(&windowResize);
