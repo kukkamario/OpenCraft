@@ -22,7 +22,9 @@ SOURCES += main.cpp \
     screenstatemanager.cpp \
     menuscreenstate.cpp \
     gamescreenstate.cpp \
-    blocktype.cpp
+    blocktype.cpp \
+    chunk.cpp \
+    chunkvbo.cpp
 
 HEADERS += \
     glinclude/glinclude.h \
@@ -31,7 +33,9 @@ HEADERS += \
     screenstate.h \
     menuscreenstate.h \
     gamescreenstate.h \
-    blocktype.h
+    blocktype.h \
+    chunk.h \
+    chunkvbo.h
 
 
 win32{
@@ -44,6 +48,10 @@ CONFIG( debug, debug|release ) {
 } else {
     LIBS += -L"libs" -lfreeglut_static
 }
+
+
+
+
 
 
 

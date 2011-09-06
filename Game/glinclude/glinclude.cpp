@@ -1,4 +1,5 @@
 #include "glinclude.h"
+#include <QDebug>
 
 
 PFNGLGENBUFFERSARBPROC mglGenBuffersARB;
@@ -21,8 +22,6 @@ PFNGLACTIVETEXTUREARBPROC        glActiveTextureARB;
 PFNGLGETINFOLOGARBPROC           glGetInfoLogARB;
 PFNGLDELETEOBJECTARBPROC         glDeleteObjectARB;
 
-bool mShaders = true;
-
 bool loadExtension()
 {
     if (glutExtensionSupported("GL_ARB_vertex_buffer_object") == GL_FALSE)
@@ -34,12 +33,8 @@ bool loadExtension()
     mglBufferDataARB = (PFNGLBUFFERDATAARBPROC)glutGetProcAddress("glBufferDataARB");
     mglDeleteBuffersARB = (PFNGLDELETEBUFFERSARBPROC)glutGetProcAddress("glDeleteBuffersARB");
 
-
-    if (glutExtensionSupported("GL_ARB_vertex_shader") && glutExtensionSupported("GL_ARB_fragment_shader") && glutExtensionSupported("GL_VERSION_2_0") != GL_TRUE)
-    {
-        mShaders = false;
-    }
-    else
+    qDebug(qPrintable("OpenGL version:"+QString((const char*)glGetString(GL_VERSION))));
+    if (glutExtensionSupported("GL_ARB_vertex_shader") && glutExtensionSupported("GL_ARB_fragment_shader"))
     {
         glCreateProgramObjectARB = (PFNGLCREATEPROGRAMOBJECTARBPROC)glutGetProcAddress("glCreateProgramObjectARB");
         glUseProgramObjectARB = (PFNGLUSEPROGRAMOBJECTARBPROC)glutGetProcAddress("glUseProgramObjectARB");
@@ -53,6 +48,11 @@ bool loadExtension()
         glGetUniformLocationARB = (PFNGLGETUNIFORMLOCATIONARBPROC)glutGetProcAddress("glGetUniformLocationARB");
         glUniform1iARB = (PFNGLUNIFORM1IARBPROC)glutGetProcAddress("glUniform1iARB");
         glDeleteObjectARB = (PFNGLDELETEOBJECTARBPROC)glutGetProcAddress("glDeleteObjectARB");
+    }
+    else
+    {
+        qDebug("Graphicscard doesn't support shaders.");
+        return false;
     }
 
     return true;
