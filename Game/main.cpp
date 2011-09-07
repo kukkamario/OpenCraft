@@ -1,8 +1,8 @@
 #include <QImage>
 #include <QDebug>
 #include "glinclude/glinclude.h"
-#include <stdlib.h>
-#include <math.h>
+#include <cstdlib>
+#include <cmath>
 #include <cstdio>
 #include "screenstatemanager.h"
 

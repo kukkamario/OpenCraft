@@ -54,7 +54,12 @@ bool loadExtension()
         qDebug("Graphicscard doesn't support shaders.");
         return false;
     }
+    if (glutExtensionSupported("GL_ARB_texture_non_power_of_two") == GL_FALSE){
 
+        qCritical("Extension not supported...");
+        return false;
+
+    }
     return true;
 }
 

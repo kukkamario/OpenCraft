@@ -1,4 +1,7 @@
 #include "menuscreenstate.h"
+#include <QImage>
+#include "glinclude/glinclude.h"
+#include "textures.h"
 
 MenuScreenState::MenuScreenState()
     :ScreenState()
@@ -13,6 +16,8 @@ MenuScreenState::~MenuScreenState()
 
 void MenuScreenState::load()
 {
+
+    glTexture2D nappi("gfx/buttontexture.png");
 
 }
 

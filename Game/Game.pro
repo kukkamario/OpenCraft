@@ -24,7 +24,8 @@ SOURCES += main.cpp \
     gamescreenstate.cpp \
     blocktype.cpp \
     chunk.cpp \
-    chunkvbo.cpp
+    chunkvbo.cpp \
+    textures.cpp
 
 HEADERS += \
     glinclude/glinclude.h \
@@ -35,7 +36,8 @@ HEADERS += \
     gamescreenstate.h \
     blocktype.h \
     chunk.h \
-    chunkvbo.h
+    chunkvbo.h \
+    textures.h
 
 
 win32{
@@ -48,6 +50,12 @@ CONFIG( debug, debug|release ) {
 } else {
     LIBS += -L"libs" -lfreeglut_static
 }
+
+
+
+
+
+
 
 
 
