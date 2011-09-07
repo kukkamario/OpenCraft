@@ -3,17 +3,17 @@
 
 #include <QString>
 #include <QImage>
-#include "glinclude/freeglut.h"
+#include "glinclude/glinclude.h"
 
 class glTexture2D{
     private:
         GLuint texture;
 
     public:
-        glTexture2D(QString filepath);
+        glTexture2D(const QString &filepath);
         ~glTexture2D();
 
-        void Load(QString filepath);
+        void Load(const QString &filepath);
         GLuint get();
 
 };

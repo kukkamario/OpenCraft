@@ -1,6 +1,6 @@
 #include "textures.h"
 
-glTexture2D::glTexture2D(QString filepath){
+glTexture2D::glTexture2D(const QString &filepath){
     if(filepath!=""){
 
        QImage tmptex(filepath);
@@ -10,12 +10,12 @@ glTexture2D::glTexture2D(QString filepath){
 
        glTexImage2D(GL_TEXTURE_2D,
                     0, 3, tmptex.width(), tmptex.height(), 0, GL_RGB, GL_UNSIGNED_BYTE,
-                    tmptex.convertToFormat(QImage::Format_ARGB32).constBits()
+                    tmptex.convertToFormat(QImage::Format_RGB888).constBits()
         );
     }
 }
 
-void glTexture2D::Load(QString filepath){
+void glTexture2D::Load(const QString &filepath){
     if(filepath!=""){
 
        QImage tmptex(filepath);
@@ -25,7 +25,7 @@ void glTexture2D::Load(QString filepath){
 
        glTexImage2D(GL_TEXTURE_2D,
                     0, 3, tmptex.width(), tmptex.height(), 0, GL_RGB, GL_UNSIGNED_BYTE,
-                    tmptex.convertToFormat(QImage::Format_ARGB32).constBits()
+                    tmptex.convertToFormat(QImage::Format_RGB888).constBits()
        );
     }
 }
