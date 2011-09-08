@@ -1,4 +1,4 @@
-#include "textures.h"
+#include "gltexture2d.h"
 
 glTexture2D::glTexture2D(const QString &filepath){
     if(filepath!=""){
@@ -11,8 +11,12 @@ glTexture2D::glTexture2D(const QString &filepath){
        glTexImage2D(GL_TEXTURE_2D,
                     0, 3, tmptex.width(), tmptex.height(), 0, GL_RGB, GL_UNSIGNED_BYTE,
                     tmptex.convertToFormat(QImage::Format_RGB888).constBits()
-        );
+       );
     }
+}
+
+glTexture2D::~glTexture2D(){
+    glDeleteTextures(1,&texture);
 }
 
 void glTexture2D::Load(const QString &filepath){
@@ -28,6 +32,10 @@ void glTexture2D::Load(const QString &filepath){
                     tmptex.convertToFormat(QImage::Format_RGB888).constBits()
        );
     }
+}
+
+void glTexture2D::Bind(){
+    glBindTexture(GL_TEXTURE_2D, texture);
 }
 
 GLuint glTexture2D::get(){

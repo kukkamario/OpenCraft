@@ -1,7 +1,7 @@
 #include "menuscreenstate.h"
 #include <QImage>
 #include "glinclude/glinclude.h"
-#include "textures.h"
+#include "gltexture2d.h"
 
 MenuScreenState::MenuScreenState()
     :ScreenState()
@@ -13,7 +13,7 @@ MenuScreenState::~MenuScreenState()
 {
 
 }
-
+//tekstuurien lataus...
 void MenuScreenState::load()
 {
 
@@ -60,10 +60,19 @@ void MenuScreenState::mouseEvent(int button, int state, int x, int y)
 
 void MenuScreenState::render()
 {
-
+    glBegin(GL_QUADS);
+        glTexCoord2f(0.0f, 1.0f);
+        glVertex2d(-1.0f, -1.0f);
+        glVertex2d(1.0f, -1.0f);
+        glVertex2d(-1.0f, 1.0f);
+        glVertex2d(1.0f, 1.0f);
+    glEnd();
 }
 
 void MenuScreenState::windowResize(int w,int h)
 {
-
+    glMatrixMode (GL_PROJECTION);
+    glLoadIdentity ();
+    glOrtho (0, w, h, 0, 0, 1);
+    glMatrixMode (GL_MODELVIEW);
 }

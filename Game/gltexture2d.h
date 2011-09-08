@@ -16,6 +16,8 @@ class glTexture2D{
         void Load(const QString &filepath);
         GLuint get();
 
+        void Bind();
+
 };
 
 #endif

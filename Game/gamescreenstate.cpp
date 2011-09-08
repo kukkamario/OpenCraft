@@ -1,5 +1,5 @@
 #include "gamescreenstate.h"
-#include "textures.h"
+#include "gltexture2d.h"
 
 GameScreenState::GameScreenState()
     :ScreenState()
