@@ -6,6 +6,13 @@
 #include <gl\GLU.h>
 #include "freeglut.h"
 
+#ifndef SAFE_DELETE
+#define SAFE_DELETE(ptr) {if(ptr) delete ptr;}
+#endif
+#ifndef SAFE_DELETE_ARRAY
+#define SAFE_DELETE_ARRAY(ptr) {if(ptr) delete[] ptr;}
+#endif
+
 bool loadExtension();
 
 void glGenBuffersARB(GLsizei n,GLuint *buffers);

@@ -1,6 +1,7 @@
 #ifndef MENUSCREENSTATE_H
 #define MENUSCREENSTATE_H
 #include "screenstate.h"
+#include "gltexture2d.h"
 
 class MenuScreenState : public ScreenState
 {
@@ -19,8 +20,13 @@ public:
     void render();
     void windowResize(int w,int h);
     const char *name(){return "menu";}
+    void selected();
 private:
-
+    glTexture2D mButton;
+    bool mLoaded;
+    float mWindowW;
+    float mWindowH;
+    float mAngle;
 };
 
 #endif // MENUSCREENSTATE_H

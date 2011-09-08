@@ -1,5 +1,5 @@
 #include "gamescreenstate.h"
-#include "textures.h"
+#include "gltexture2d.h"
 
 GameScreenState::GameScreenState()
     :ScreenState()
@@ -68,6 +68,11 @@ void GameScreenState::windowResize(int w,int h)
 }
 
 void GameScreenState::mouseWheelEvent(int wheel,int direction)
+{
+
+}
+
+void GameScreenState::selected()
 {
 
 }

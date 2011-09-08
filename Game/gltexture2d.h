@@ -6,16 +6,19 @@
 #include "glinclude/glinclude.h"
 
 class glTexture2D{
-    private:
-        GLuint texture;
+private:
+    GLuint texture;
 
-    public:
-        glTexture2D(const QString &filepath);
-        ~glTexture2D();
+public:
+    glTexture2D(){texture = 0;}
+    glTexture2D(const QString &filepath,bool mipmap = true);
+    ~glTexture2D();
 
-        void Load(const QString &filepath);
-        GLuint get();
-
+    void load(const QString &filepath,bool mipmap = true);
+    GLuint getId(){return texture;}
+    void bind()const{Q_ASSERT(texture);glBindTexture(GL_TEXTURE_2D,texture);}
+    bool isNull()const{return texture == 0;}
+    void unload();
 };
 
 #endif

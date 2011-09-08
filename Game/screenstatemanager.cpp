@@ -28,13 +28,18 @@ void ScreenStateManager::changeStateTo(const char *name)
             mActiveScreenState->unload();
             mActiveScreenState = *i;
             mActiveScreenState->load();
+            mActiveScreenState->selected();
+            mActiveScreenState->windowResize(mWindowW,mWindowH);
         }
     }
 }
 
 
-bool ScreenStateManager::init()
+bool ScreenStateManager::init(int ww, int wh)
 {
+    mWindowW = ww;
+    mWindowH = wh;
+
     MenuScreenState *menustate = new MenuScreenState();
     GameScreenState *gamestate = new GameScreenState();
     mScreenStates.append(menustate);
@@ -49,6 +54,8 @@ bool ScreenStateManager::init()
     }
 
     mActiveScreenState->load();
+    mActiveScreenState->selected();
+    mActiveScreenState->windowResize(mWindowW,mWindowH);
     return true;
 }
 
@@ -92,6 +99,8 @@ void ScreenStateManager::render()
 void ScreenStateManager::windowResize(int w,int h)
 {
     Q_ASSERT(mActiveScreenState);
+    mWindowW = w;
+    mWindowH = h;
     mActiveScreenState->windowResize(w,h);
 }
 

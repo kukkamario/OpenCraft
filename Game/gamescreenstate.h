@@ -19,6 +19,7 @@ public:
     void mouseWheelEvent(int wheel,int direction);
     void render();
     void windowResize(int w,int h);
+    void selected();
     const char *name(){return "menu";}
 private:
     glPainter mPainter;

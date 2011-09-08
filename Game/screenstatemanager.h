@@ -11,7 +11,7 @@ public:
 
     static ScreenStateManager *instance();
 
-    bool init();
+    bool init(int ww,int wh);
     void changeStateTo(const char * name);
 
     void mouseEvent(int button,int state,int x,int y);
@@ -26,6 +26,7 @@ public:
 private:
     QList<ScreenState*> mScreenStates;
     ScreenState *mActiveScreenState;
+    int mWindowW,mWindowH;
 };
 
 #endif // SCREENSTATEMANAGER_H

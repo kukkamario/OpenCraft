@@ -67,7 +67,7 @@ int main(int argc, char **argv)
     glutInitWindowSize(320,320);
     glutCreateWindow("OpenCraft");
 
-    if (!ScreenStateManager::instance()->init())
+    if (!ScreenStateManager::instance()->init(320,320))
     {
         qCritical("Can't initialize ScreenStateManager.");
         return 1;
@@ -83,7 +83,7 @@ int main(int argc, char **argv)
     glutMouseFunc(&mouseEvent);
     glutMouseWheelFunc(&mouseWheelEvent);
 
-    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_ALPHA_TEST);
 
 
     // enter GLUT event processing cycle

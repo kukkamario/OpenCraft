@@ -25,7 +25,7 @@ SOURCES += main.cpp \
     blocktype.cpp \
     chunk.cpp \
     chunkvbo.cpp \
-    textures.cpp
+    gltexture2d.cpp
 
 HEADERS += \
     glinclude/glinclude.h \
@@ -37,7 +37,7 @@ HEADERS += \
     blocktype.h \
     chunk.h \
     chunkvbo.h \
-    textures.h
+    gltexture2d.h
 
 
 win32{

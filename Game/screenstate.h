@@ -18,6 +18,7 @@ public:
     virtual void render() = 0;
     virtual void windowResize(int w,int h) = 0;
     virtual const char *name() = 0;
+    virtual void selected() = 0;
 };
 
 #endif // SCREENSTATE_H
