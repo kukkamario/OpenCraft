@@ -11,8 +11,22 @@ TEMPLATE = app
 CONFIG += qt
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    vertexdatadockwidget.cpp \
+    blockrenderer.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    vertexdatadockwidget.h \
+    blockrenderer.h \
+    blockvertex.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    vertexdatadockwidget.ui
+
+
+
+
+
+
+
+

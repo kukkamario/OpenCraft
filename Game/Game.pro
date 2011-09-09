@@ -25,7 +25,8 @@ SOURCES += main.cpp \
     blocktype.cpp \
     chunk.cpp \
     chunkvbo.cpp \
-    gltexture2d.cpp
+    gltexture2d.cpp \
+    blocktypemanager.cpp
 
 HEADERS += \
     glinclude/glinclude.h \
@@ -37,7 +38,10 @@ HEADERS += \
     blocktype.h \
     chunk.h \
     chunkvbo.h \
-    gltexture2d.h
+    gltexture2d.h \
+    blocktypemanager.h \
+    blockvertex.h \
+    block.h
 
 
 win32{
@@ -52,8 +56,16 @@ CONFIG( debug, debug|release ) {
 }
 
 OTHER_FILES += \
-    chunkfragment.frag \
-    chunkvertex.vert
+    shaders/chunkfragment.frag \
+    shaders/chunkvertex.vert
+
+
+
+
+
+
+
+
 
 
 
