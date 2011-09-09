@@ -51,6 +51,18 @@ CONFIG( debug, debug|release ) {
     LIBS += -L"libs" -lfreeglut_static
 }
 
+OTHER_FILES += \
+    chunkfragment.frag \
+    chunkvertex.vert
+
+
+
+
+
+
+
+
+
 
 
 
