@@ -1,9 +1,10 @@
 #ifndef CHUNK_H
 #define CHUNK_H
-#include "chunkvbo.h"
+#include <QMap>
 #include <QMutex>
 #include "block.h"
-#define CHUNK_SIZE 50
+#define CHUNK_SIZE 32
+#define CHUNK_BLOCK_COUNT 32768
 
 class Chunk
 {
@@ -13,15 +14,25 @@ public:
     int chunkX()const{return mX;}
     int chunkY()const{return mY;}
     int chunkZ()const{return mZ;}
+    void organizeBlocks();
     Block at(int x,int y,int z)const{return mBlocks[x+y*CHUNK_SIZE+z*CHUNK_SIZE*CHUNK_SIZE];}
 private:
+    struct BlockCoord
+    {
+        uchar x;
+        uchar y;
+        uchar z;
+    };
+
+    struct BlockTypeData
+    {
+        QList<BlockCoord> mBlocks;
+        GLuint mVBO;
+    };
+
     int mX,mY,mZ;
-    QMap<BlockTypePtr,QList<BlockCoord> > mBlockTypes;
-    Block mBlocks[125000];
-
-
-    ChunkVBO mVBO;
-    QMutex mVBOMutex;
+    GLuint mVBO;
+    Block mBlocks[CHUNK_BLOCK_COUNT];
 };
 
 #endif // CHUNK_H

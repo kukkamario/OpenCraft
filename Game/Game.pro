@@ -24,9 +24,10 @@ SOURCES += main.cpp \
     gamescreenstate.cpp \
     blocktype.cpp \
     chunk.cpp \
-    chunkvbo.cpp \
     gltexture2d.cpp \
-    blocktypemanager.cpp
+    blocktypemanager.cpp \
+    glshaderprogram.cpp \
+    glshader.cpp
 
 HEADERS += \
     glinclude/glinclude.h \
@@ -37,11 +38,12 @@ HEADERS += \
     gamescreenstate.h \
     blocktype.h \
     chunk.h \
-    chunkvbo.h \
     gltexture2d.h \
     blocktypemanager.h \
     blockvertex.h \
-    block.h
+    block.h \
+    glshaderprogram.h \
+    glshader.h
 
 
 win32{
@@ -58,6 +60,12 @@ CONFIG( debug, debug|release ) {
 OTHER_FILES += \
     shaders/chunkfragment.frag \
     shaders/chunkvertex.vert
+
+
+
+
+
+
 
 
 
