@@ -27,6 +27,9 @@ struct TexCoord
     float w;
 };
 
+#define BLOCK_VERTEX_OFFSET_VERTEX 0
+#define BLOCK_VERTEX_OFFSET_NORMAL 12
+#define BLOCK_VERTEX_OFFSET_TEXCOORD 24
 
 struct BlockVertex
 {

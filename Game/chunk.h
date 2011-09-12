@@ -5,6 +5,7 @@
 #include "block.h"
 #define CHUNK_SIZE 32
 #define CHUNK_BLOCK_COUNT 32768
+#define MAX_BLOCK_GROUP_DATAS 256
 
 class ChunkedMap;
 
@@ -29,6 +30,36 @@ struct ChunkCoord
     }
 };
 
+struct BlockGroupData
+{
+    struct BlockPosData
+    {
+        Block* ptr;
+        uchar x;
+        uchar y;
+        uchar z;
+    };
+
+    BlockGroupData(){mVBO = 0;}
+    ~BlockGroupData()
+    {
+        if (mVBO)
+        {
+            glDeleteBufferARB(1,&mVBO);
+        }
+    }
+    void reset()
+    {
+        if (mVBO)
+        {
+            glDeleteBufferARB(1,&mVBO);
+        }
+    }
+    QList<Block*> mBlocks;
+    GLuint mVBO;
+    int mVerticesTotal;
+};
+
 struct BlockCoord
 {
     uchar x;
@@ -38,29 +69,16 @@ struct BlockCoord
 class Chunk
 {
 public:
-    Chunk(ChunkedMap *owner){mOwner = owner;}
+    Chunk(ChunkedMap *owner);
+    ~Chunk();
+
     void draw();
     ChunkCoord pos()const{mPos;}
     Block at(int x,int y,int z)const{return mBlocks[x+y*CHUNK_SIZE+z*CHUNK_SIZE*CHUNK_SIZE];}
 private:
     void generateVBOs();
 
-    struct BlockGroupData
-    {
-        BlockGroupData(){mVBO = 0;}
-        ~BlockGroupData()
-        {
-            if (mVBO)
-            {
-                glDeleteBufferARB(1,&mVBO);
-            }
-        }
-
-        QList<BlockCoord> mBlocks;
-        GLuint mVBO;
-    };
-
-    QMap<uchar,BlockGroupData> mDrawMap;
+    BlockGroupData *mDrawMap[MAX_BLOCK_GROUP_DATAS];
 
     ChunkCoord mPos;
     GLuint mVBO;
