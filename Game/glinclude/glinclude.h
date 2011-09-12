@@ -23,21 +23,24 @@ void glBufferDataARB(GLenum target,GLsizeiptrARB size,const GLvoid *data,GLenum 
 
 void glDeleteBufferARB(GLsizei n,GLuint *buffers);
 
-void glUseProgram(GLuint program);
 
-void glCreateShader(GLenum shaderType);
+void glShaderSource(GLhandleARB shader, int numOfStrings, const char **strings, int *lenOfStrings);
+void glGetObjectParameteriv(GLhandleARB object, GLenum type, int *param);
+void glUseProgram(GLhandleARB program);
 
-void glAttachShader(GLuint program,GLuint shader);
+GLhandleARB glCreateShader(GLenum shaderType);
 
-void glCompileShader(GLuint shader);
+void glAttachShader(GLhandleARB program,GLhandleARB shader);
 
-void glUniform1i(GLuint location,GLuint value);
+void glCompileShader(GLhandleARB shader);
 
-void glGetUniformLocation(GLuint program,const char *name);
+void glUniform1i(GLhandleARB location,GLuint value);
 
-void glCreateProgram();
+void glGetUniformLocation(GLhandleARB program,const char *name);
 
-void glGetInfoLog(GLuint program,GLsizei maxLength,GLsizei *length,char *text);
+GLhandleARB glCreateProgram();
 
-void glLinkProgram(GLuint program);
-void glDeleteObject(GLuint object);
+void glGetInfoLog(GLhandleARB program,GLsizei maxLength,GLsizei *length,char *text);
+
+void glLinkProgram(GLhandleARB program);
+void glDeleteObject(GLhandleARB object);

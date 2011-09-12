@@ -4,7 +4,6 @@
 #include <QMatrix4x4>
 #include <QStack>
 #include <QVector3D>
-#include "chunkvbo.h"
 
 class glPainter
 {
@@ -41,7 +40,6 @@ public:
     void setNearPlane(const float nearP);
     void setFarPlane(const float farP);
     void setAspectRatio(const float aspect);
-    void drawChunk(const ChunkVBO &chunkvbo);
 
     void beginPaint();
     void endPaint();

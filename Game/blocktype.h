@@ -14,12 +14,12 @@ public:
 
     bool operator <(const BlockTypePtr &ptr)const
     {
-        return (((int)mIndex << 16)+mIndex2) < (((int)ptr.mIndex << 16)+ptr.mIndex2);
+        return (((int)mIndex << 8)+mIndex2) < (((int)ptr.mIndex << 8)+ptr.mIndex2);
     }
 
     bool operator >(const BlockTypePtr &ptr)const
     {
-        return (((int)mIndex << 16)+mIndex2) < (((int)ptr.mIndex << 16)+ptr.mIndex2);
+        return (((int)mIndex << 8)+mIndex2) < (((int)ptr.mIndex << 8)+ptr.mIndex2);
     }
 
     uchar mIndex;

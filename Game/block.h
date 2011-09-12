@@ -13,7 +13,8 @@ public:
         V_Front = 0x04,
         V_Back = 0x08,
         V_Top = 0x10,
-        V_Bottom = 0x20
+        V_Bottom = 0x20,
+        Transparent = 0x40
     };
 
     Block(){}

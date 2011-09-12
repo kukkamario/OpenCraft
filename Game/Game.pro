@@ -27,7 +27,10 @@ SOURCES += main.cpp \
     gltexture2d.cpp \
     blocktypemanager.cpp \
     glshaderprogram.cpp \
-    glshader.cpp
+    glshader.cpp \
+    blockgroup.cpp \
+    errorhandler.cpp \
+    chunkedmap.cpp
 
 HEADERS += \
     glinclude/glinclude.h \
@@ -43,7 +46,10 @@ HEADERS += \
     blockvertex.h \
     block.h \
     glshaderprogram.h \
-    glshader.h
+    glshader.h \
+    blockgroup.h \
+    errorhandler.h \
+    chunkedmap.h
 
 
 win32{
@@ -60,6 +66,12 @@ CONFIG( debug, debug|release ) {
 OTHER_FILES += \
     shaders/chunkfragment.frag \
     shaders/chunkvertex.vert
+
+
+
+
+
+
 
 
 

@@ -63,56 +63,65 @@ bool loadExtension()
     return true;
 }
 
-void glUseProgram(GLuint program)
+void glUseProgram(GLhandleARB program)
 {
     glUseProgramObjectARB(program);
 }
 
-void glCreateShader(GLenum shaderType)
+void glShaderSource(GLhandleARB shader, int numOfStrings, const char **strings, int *lenOfStrings)
 {
-    glCreateShaderObjectARB(shaderType);
+    glShaderSourceARB(shader,numOfStrings,strings,lenOfStrings);
 }
 
-void glAttachShader(GLuint program,GLuint shader)
+GLhandleARB glCreateShader(GLenum shaderType)
+{
+    return glCreateShaderObjectARB(shaderType);
+}
+
+void glAttachShader(GLhandleARB program,GLhandleARB shader)
 {
     glAttachObjectARB(program,shader);
 }
 
-void glCompileShader(GLuint shader)
+void glCompileShader(GLhandleARB shader)
 {
     glCompileShaderARB(shader);
 }
 
-void glUniform1i(GLuint location,GLuint value)
+void glUniform1i(GLhandleARB location,GLhandleARB value)
 {
     glUniform1iARB(location,value);
 }
 
-void glGetUniformLocation(GLuint program,const char *name)
+void glGetUniformLocation(GLhandleARB program,const char *name)
 {
     glGetUniformLocationARB(program,name);
 }
 
-void glCreateProgram()
+GLhandleARB glCreateProgram()
 {
-    glCreateProgramObjectARB();
+    return glCreateProgramObjectARB();
 }
 
-void glGetInfoLog(GLuint program,GLsizei maxLength,GLsizei *length,char *text)
+void glGetInfoLog(GLhandleARB program,GLsizei maxLength,GLsizei *length,char *text)
 {
     glGetInfoLogARB(program,maxLength,length,text);
 }
 
-void glLinkProgram(GLuint program)
+void glLinkProgram(GLhandleARB program)
 {
     glLinkProgramARB(program);
 }
 
-void glDeleteObject(GLuint object)
+void glDeleteObject(GLhandleARB object)
 {
     glDeleteObjectARB(object);
 }
 
+void glGetObjectParameteriv(GLhandleARB object, GLenum type, int *param)
+{
+    glGetObjectParameterivARB(object,type,param);
+}
 
 
 void glGenBuffersARB(GLsizei n,GLuint *buffers)

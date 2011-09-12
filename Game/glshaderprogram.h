@@ -7,11 +7,15 @@ class glShaderProgram
 {
 public:
     glShaderProgram();
-    bool attach(glShader *shader);
-    bool compile();
+    bool load(const QString &path);
+    void setVertexShader(glShader *shader);
+    void setFragmentShader(glShader *shader);
+    bool link();
     void use();
 private:
-    QList<glShader*> mShaders;
+    glShader *mVertexShader;
+    glShader *mFragmentShader;
+    GLuint mPtr;
 };
 
 #endif // GLSHADERPROGRAM_H
