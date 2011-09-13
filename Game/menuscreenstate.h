@@ -2,6 +2,7 @@
 #define MENUSCREENSTATE_H
 #include "screenstate.h"
 #include "gltexture2d.h"
+#include "time.h"
 
 class MenuScreenState : public ScreenState
 {
@@ -22,11 +23,14 @@ public:
     const char *name(){return "menu";}
     void selected();
 private:
-    glTexture2D mButton;
+
+    int mFPS;
+    int mFPSCounter;
+    clock_t mLastTime;
+
     bool mLoaded;
     float mWindowW;
     float mWindowH;
-    float mAngle;
 };
 
 #endif // MENUSCREENSTATE_H

@@ -16,3 +16,13 @@ void ErrorHandler::raiseError(const QString &msg)
     mLastError = msg;
     qCritical() << msg;
 }
+
+void ErrorHandler::raiseWarning(const QString &msg)
+{
+    qWarning() << msg;
+}
+
+void ErrorHandler::debugPrint(const QString &msg)
+{
+    qDebug() << msg;
+}

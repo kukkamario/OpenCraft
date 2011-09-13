@@ -3,45 +3,26 @@
 #include <QString>
 #include "glinclude/glinclude.h"
 #include "blockvertex.h"
-class BlockTypePtr
-{
-public:
-    BlockTypePtr(uchar index,uchar index2 = 0):mIndex(index),mIndex2(index2){}
-    bool operator == (const BlockTypePtr &ptr)const
-    {
-        return (mIndex == ptr.mIndex) && (mIndex2 == ptr.mIndex2);
-    }
 
-    bool operator <(const BlockTypePtr &ptr)const
-    {
-        return (((int)mIndex << 8)+mIndex2) < (((int)ptr.mIndex << 8)+ptr.mIndex2);
-    }
 
-    bool operator >(const BlockTypePtr &ptr)const
-    {
-        return (((int)mIndex << 8)+mIndex2) < (((int)ptr.mIndex << 8)+ptr.mIndex2);
-    }
+/**
+  * Palikkatyyppi. Kaikkilla eri muotoisilla ja näköisillä blockeilla on oma BlockTypensä.
 
-    uchar mIndex;
-    uchar mIndex2;
-};
-
+  * @brief
+  *  BlockTypet erotetaan toisistaan id:n avulla. Id generoidaan joka kartan luonnin yhteydessä ja tallennetaan karttatiedostoon.
+  *  BlockType pitää myös sisällää tarvittavan tiedon palikan piirtämiseen.
+  */
 class BlockType
 {
 public:
     BlockType();
-    uchar index()const{return mIndex;}
-    uchar index2()const{return mIndex2;}
-    bool hasSecondIndex()const{return mSecondIndex;}
-    BlockTypePtr ptr()const{return BlockTypePtr(mIndex,mIndex2);}
+    ushort index()const{return mIndex;}
     QString name()const;
     int countVertices()const{return mVertexCount;}
     const BlockVertex *getVertices()const{return mVertices;}
 private:
     QString mName;
-    uchar mIndex;
-    bool mSecondIndex;
-    uchar mIndex2;
+    ushort mIndex;
     int mVertexCount;
     BlockVertex *mVertices;
 };

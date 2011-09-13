@@ -2,6 +2,7 @@
 #include <QDebug>
 
 
+
 PFNGLGENBUFFERSARBPROC mglGenBuffersARB;
 PFNGLBINDBUFFERARBPROC mglBindBufferARB;
 PFNGLBUFFERDATAARBPROC mglBufferDataARB;
@@ -22,32 +23,32 @@ PFNGLACTIVETEXTUREARBPROC        glActiveTextureARB;
 PFNGLGETINFOLOGARBPROC           glGetInfoLogARB;
 PFNGLDELETEOBJECTARBPROC         glDeleteObjectARB;
 
-bool loadExtension()
+bool loadExtension(const QGLContext *context)
 {
     if (glutExtensionSupported("GL_ARB_vertex_buffer_object") == GL_FALSE)
     {
         return false;
     }
-    mglGenBuffersARB  = (PFNGLGENBUFFERSARBPROC)glutGetProcAddress("glGenBuffersARB");
-    mglBindBufferARB = (PFNGLBINDBUFFERARBPROC)glutGetProcAddress("glBindBufferARB");
-    mglBufferDataARB = (PFNGLBUFFERDATAARBPROC)glutGetProcAddress("glBufferDataARB");
-    mglDeleteBuffersARB = (PFNGLDELETEBUFFERSARBPROC)glutGetProcAddress("glDeleteBuffersARB");
+    mglGenBuffersARB  = (PFNGLGENBUFFERSARBPROC)context->getProcAddress("glGenBuffersARB");
+    mglBindBufferARB = (PFNGLBINDBUFFERARBPROC)context->getProcAddress("glBindBufferARB");
+    mglBufferDataARB = (PFNGLBUFFERDATAARBPROC)context->getProcAddress("glBufferDataARB");
+    mglDeleteBuffersARB = (PFNGLDELETEBUFFERSARBPROC)context->getProcAddress("glDeleteBuffersARB");
 
     qDebug(qPrintable("OpenGL version:"+QString((const char*)glGetString(GL_VERSION))));
     if (glutExtensionSupported("GL_ARB_vertex_shader") && glutExtensionSupported("GL_ARB_fragment_shader"))
     {
-        glCreateProgramObjectARB = (PFNGLCREATEPROGRAMOBJECTARBPROC)glutGetProcAddress("glCreateProgramObjectARB");
-        glUseProgramObjectARB = (PFNGLUSEPROGRAMOBJECTARBPROC)glutGetProcAddress("glUseProgramObjectARB");
-        glCreateShaderObjectARB = (PFNGLCREATESHADEROBJECTARBPROC)glutGetProcAddress("glCreateShaderObjectARB");
-        glShaderSourceARB = (PFNGLSHADERSOURCEARBPROC)glutGetProcAddress("glShaderSourceARB");
-        glCompileShaderARB = (PFNGLCOMPILESHADERARBPROC)glutGetProcAddress("glCompileShaderARB");
-        glGetObjectParameterivARB = (PFNGLGETOBJECTPARAMETERIVARBPROC)glutGetProcAddress("glGetObjectParameterivARB");
-        glAttachObjectARB = (PFNGLATTACHOBJECTARBPROC)glutGetProcAddress("glAttachObjectARB");
-        glGetInfoLogARB = (PFNGLGETINFOLOGARBPROC)glutGetProcAddress("glGetInfoLogARB");
-        glLinkProgramARB = (PFNGLLINKPROGRAMARBPROC)glutGetProcAddress("glLinkProgramARB");
-        glGetUniformLocationARB = (PFNGLGETUNIFORMLOCATIONARBPROC)glutGetProcAddress("glGetUniformLocationARB");
-        glUniform1iARB = (PFNGLUNIFORM1IARBPROC)glutGetProcAddress("glUniform1iARB");
-        glDeleteObjectARB = (PFNGLDELETEOBJECTARBPROC)glutGetProcAddress("glDeleteObjectARB");
+        glCreateProgramObjectARB = (PFNGLCREATEPROGRAMOBJECTARBPROC)context->getProcAddress("glCreateProgramObjectARB");
+        glUseProgramObjectARB = (PFNGLUSEPROGRAMOBJECTARBPROC)context->getProcAddress("glUseProgramObjectARB");
+        glCreateShaderObjectARB = (PFNGLCREATESHADEROBJECTARBPROC)context->getProcAddress("glCreateShaderObjectARB");
+        glShaderSourceARB = (PFNGLSHADERSOURCEARBPROC)context->getProcAddress("glShaderSourceARB");
+        glCompileShaderARB = (PFNGLCOMPILESHADERARBPROC)context->getProcAddress("glCompileShaderARB");
+        glGetObjectParameterivARB = (PFNGLGETOBJECTPARAMETERIVARBPROC)context->getProcAddress("glGetObjectParameterivARB");
+        glAttachObjectARB = (PFNGLATTACHOBJECTARBPROC)context->getProcAddress("glAttachObjectARB");
+        glGetInfoLogARB = (PFNGLGETINFOLOGARBPROC)context->getProcAddress("glGetInfoLogARB");
+        glLinkProgramARB = (PFNGLLINKPROGRAMARBPROC)context->getProcAddress("glLinkProgramARB");
+        glGetUniformLocationARB = (PFNGLGETUNIFORMLOCATIONARBPROC)context->getProcAddress("glGetUniformLocationARB");
+        glUniform1iARB = (PFNGLUNIFORM1IARBPROC)context->getProcAddress("glUniform1iARB");
+        glDeleteObjectARB = (PFNGLDELETEOBJECTARBPROC)context->getProcAddress("glDeleteObjectARB");
     }
     else
     {

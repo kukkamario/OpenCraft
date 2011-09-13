@@ -14,11 +14,11 @@ GameScreenState::~GameScreenState()
 
 bool GameScreenState::init()
 {
-    if (!mPainter.init())
-    {
-        qCritical("Can't initialize glPainter.");
-        return false;
-    }
+//    if (!mPainter.init())
+//    {
+//        qCritical("Can't initialize glPainter.");
+//        return false;
+//    }
     return true;
 }
 

@@ -4,6 +4,7 @@
 #include <gl\GL.h>
 #include "glext.h"
 #include <gl\GLU.h>
+#include <QGLContext>
 #include "freeglut.h"
 
 #ifndef SAFE_DELETE
@@ -13,7 +14,7 @@
 #define SAFE_DELETE_ARRAY(ptr) {if(ptr) delete[] ptr;}
 #endif
 
-bool loadExtension();
+bool loadExtension(const QGLContext *context);
 
 void glGenBuffersARB(GLsizei n,GLuint *buffers);
 

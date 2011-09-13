@@ -1,6 +1,7 @@
 #include "chunk.h"
 #include "blocktypemanager.h"
 #include "glinclude/glinclude.h"
+#include "chunkedmap.h"
 Chunk::Chunk(ChunkedMap *owner)
 {
     mOwner = owner;
@@ -42,7 +43,7 @@ void Chunk::generateVBOs()
             {
                 mDrawMap[block.mBlockGroup]->mBlocks.append(mBlocks + i * sizeof(Block));
 
-                mDrawMap[block.mBlockGroup]->mVerticesTotal += BlockTypeManager::instance()->getBlockType(block)->countVertices();
+                mDrawMap[block.mBlockGroup]->mVerticesTotal += mOwner->blockTypeManager()->getBlockType(block)->countVertices();
                 continue;
             }
         }

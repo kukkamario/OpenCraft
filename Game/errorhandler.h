@@ -7,6 +7,8 @@ class ErrorHandler
 public:
     static ErrorHandler *instance();
     void raiseError(const QString &msg);
+    void raiseWarning(const QString &msg);
+    void debugPrint(const QString &msg);
     QString lastError()const{return mLastError;}
 private:
     ErrorHandler();

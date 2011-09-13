@@ -15,7 +15,7 @@ glPainter::glPainter()
 
 bool glPainter::init()
 {
-    if (!loadExtension()) return false;
+    //if (!loadExtension()) return false;
     mFOV = 90.0f;
     mNearPlane = 0.01f;
     mFarPlane = 1000.0f;

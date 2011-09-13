@@ -19,8 +19,7 @@ public:
     };
 
     Block(){}
-    uchar mBlockType;
-    uchar mBlockType2;
+    ushort mBlockType;
     uchar mBlockVisibilityFlags;
     uchar mLight;
     uchar mBlockGroup;

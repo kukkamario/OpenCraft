@@ -3,7 +3,7 @@
 # Project created by QtCreator 2011-09-01T17:26:36
 #
 #-------------------------------------------------
-CONFIG += qt thread resources
+CONFIG += qt thread resources precompile_header
 
 win32{
     CONFIG += windows
@@ -13,8 +13,10 @@ QT       += core gui opengl
 
 TARGET = Game
 
+
 TEMPLATE = app
 
+PRECOMPILED_HEADER += precompiled_header.h
 
 SOURCES += main.cpp \
     glinclude/glinclude.cpp \
@@ -26,11 +28,11 @@ SOURCES += main.cpp \
     chunk.cpp \
     gltexture2d.cpp \
     blocktypemanager.cpp \
-    glshaderprogram.cpp \
-    glshader.cpp \
     blockgroup.cpp \
     errorhandler.cpp \
-    chunkedmap.cpp
+    chunkedmap.cpp \
+    shaderprogrammanager.cpp \
+    mainwindow.cpp
 
 HEADERS += \
     glinclude/glinclude.h \
@@ -45,11 +47,12 @@ HEADERS += \
     blocktypemanager.h \
     blockvertex.h \
     block.h \
-    glshaderprogram.h \
-    glshader.h \
     blockgroup.h \
     errorhandler.h \
-    chunkedmap.h
+    chunkedmap.h \
+    shaderprogrammanager.h \
+    precompiled_header.h \
+    mainwindow.h
 
 
 win32{
@@ -66,6 +69,15 @@ CONFIG( debug, debug|release ) {
 OTHER_FILES += \
     shaders/chunkfragment.frag \
     shaders/chunkvertex.vert
+
+
+
+
+
+
+
+
+
 
 
 

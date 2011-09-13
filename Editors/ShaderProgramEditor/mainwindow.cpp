@@ -158,25 +158,11 @@ bool MainWindow::openShader(const QString &path)
     QString name;
     in >> name;
 
-    int size;
     QString vertexShader;
     QString fragmentShader;
 
-    in >> size;
-    for (int i = 0; i != size;i++)
-    {
-        QString line;
-        in >> line;
-        vertexShader += line + "\n";
-    }
-
-    in >> size;
-    for (int i = 0; i != size;i++)
-    {
-        QString line;
-        in >> line;
-        fragmentShader += line + "\n";
-    }
+    in >> vertexShader;
+    in >> fragmentShader;
 
     ui->lineEdit->setText(name);
     ui->textEdit_2->setText(vertexShader);
@@ -204,25 +190,17 @@ bool MainWindow::saveShader(const QString &path)
         QMessageBox::critical(this,tr("Can't save"),tr("Can't save program to %1").arg(path));
         return false;
     }
-    QStringList vertexShader = ui->textEdit_2->toPlainText().split("\n");
-    QStringList fragmentShader = ui->textEdit->toPlainText().split("\n");
+    QString vertexShader = ui->textEdit_2->toPlainText();
+    QString fragmentShader = ui->textEdit->toPlainText();
 
     QDataStream out(&file);
     out << ((int)MAGIC_NUMBER); //Magicnumber...
     out << ((int)0x00000001); //Versionnumber...
     out << ui->lineEdit->text(); //Nimi...
 
-    out << (int)vertexShader.size();
-    for (QStringList::const_iterator i = vertexShader.constBegin();i != vertexShader.constEnd();i++)
-    {
-        out << (*i);
-    }
+    out << vertexShader;
 
-    out << (int)fragmentShader.size();
-    for (QStringList::const_iterator i = fragmentShader.constBegin();i != fragmentShader.constEnd();i++)
-    {
-        out << (*i);
-    }
+    out << fragmentShader;
 
     file.close();
 

@@ -4,18 +4,20 @@
 #include "blocktype.h"
 #include "block.h"
 
+/**
+  * BlockTypeManager hallinnoi BlockTypejä. Se pitää niistä kirjaa ja sisältää funktiot niiden etsimiseen. Ja myöskin lataa BlockTypet
+  */
 class BlockTypeManager
 {
 public:
-    static const BlockTypeManager *instance();
+    BlockTypeManager();
 
-    const BlockType *getBlockType(const BlockTypePtr &ptr)const{Q_ASSERT(mBlockTypes.contains(ptr));return &(mBlockTypes[ptr]);}
-    const BlockType *getBlockType(uchar id,uchar secondId = 0)const{BlockTypePtr ptr(id,secondId);return getBlockType(ptr);}
-    const BlockType *getBlockType(const Block &block)const{BlockTypePtr ptr(block.mBlockType,block.mBlockType2);return getBlockType(ptr);}
+    const BlockType *getBlockType(ushort id){Q_ASSERT(mBlockTypes.contains(id));return mBlockTypes.value(id);}
+    const BlockType *getBlockType(const Block &block){return getBlockType(block.mBlockType);}
     bool loadBlocks();
 private:
-    BlockTypeManager();
-    QMap<BlockTypePtr,BlockType> mBlockTypes;
+
+    QMap<ushort,BlockType*> mBlockTypes;
 };
 
 #endif // BLOCKTYPEMANAGER_H

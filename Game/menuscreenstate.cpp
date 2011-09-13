@@ -2,11 +2,17 @@
 #include <QImage>
 #include "glinclude/glinclude.h"
 
+
+#define FBO_WIDTH 800
+#define FBO_HEIGHT 600
+
 MenuScreenState::MenuScreenState()
     :ScreenState()
 {
     mLoaded = false;
-    mAngle = 0;
+    mFPS = 0;
+    mFPSCounter = 0;
+    mLastTime = clock();
 }
 
 MenuScreenState::~MenuScreenState()
@@ -18,15 +24,15 @@ void MenuScreenState::load()
 {
     if (!mLoaded)
     {
-        mButton.load("gfx/buttontexture.png",true);
-        Q_ASSERT(!mButton.isNull());
     }
 }
 
 void MenuScreenState::unload()
 {
     if (mLoaded)
-        mButton.unload();
+    {
+
+    }
 }
 
 
@@ -61,27 +67,21 @@ void MenuScreenState::mouseEvent(int button, int state, int x, int y)
 
 }
 
-void drawButton(float w,float h,float angle)
-{
-    glPushMatrix();
-        glRotatef(angle,0,0,1);
-        glBegin(GL_QUADS);
-            glTexCoord2f(0,1);glVertex2f(-w*0.5,h*0.5);
-            glTexCoord2f(0,0);glVertex2f(-w*0.5,-h*0.5);
-            glTexCoord2f(1,0);glVertex2f(w*0.5,-h*0.5);
-            glTexCoord2f(1,1);glVertex2f(w*0.5,h*0.5);
-        glEnd();
-    glPopMatrix();
-}
 
 void MenuScreenState::render()
 {
+    if (clock() > mLastTime + CLOCKS_PER_SEC)
+    {
+        mFPS = mFPSCounter;
+        mFPSCounter = 0;
+        mLastTime = clock();
+    }
     glLoadIdentity();
-    mButton.bind();
-    mAngle+= 0.1;
-    glTranslatef(mWindowW*0.5,mWindowH*0.5,0);
-    drawButton(mWindowW*0.8,mWindowH*0.2,mAngle);
+    glRasterPos2i(100,100);
+    glColor3f(1,1,1);
+    glutBitmapString(GLUT_BITMAP_9_BY_15,(const unsigned char*)(const char*)(QByteArray("FPS:")+QByteArray::number(mFPS)));
 
+    mFPSCounter++;
 }
 
 void MenuScreenState::windowResize(int w,int h)
