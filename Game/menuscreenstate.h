@@ -6,8 +6,9 @@
 
 class MenuScreenState : public ScreenState
 {
+    Q_OBJECT
 public:
-    MenuScreenState();
+    MenuScreenState(QObject *parent = 0);
     ~MenuScreenState();
     bool init();
     void load();

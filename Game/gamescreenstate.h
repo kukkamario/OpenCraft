@@ -5,8 +5,9 @@
 
 class GameScreenState : public ScreenState
 {
+    Q_OBJECT
 public:
-    GameScreenState();
+    GameScreenState(QObject *parent = 0);
     ~GameScreenState();
     bool init();
     void load();

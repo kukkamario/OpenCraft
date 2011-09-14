@@ -1,10 +1,12 @@
 #ifndef SCREENSTATE_H
 #define SCREENSTATE_H
+#include <QObject>
 
-class ScreenState
+class ScreenState : public QObject
 {
+    Q_OBJECT
 public:
-    ScreenState(){}
+    ScreenState(QObject *parent = 0);
     virtual ~ScreenState(){}
     virtual void load() = 0;
     virtual bool init() = 0;
@@ -19,6 +21,8 @@ public:
     virtual void windowResize(int w,int h) = 0;
     virtual const char *name() = 0;
     virtual void selected() = 0;
+signals:
+    void repaintGL();
 };
 
 #endif // SCREENSTATE_H

@@ -1,6 +1,7 @@
 #include "screenstatemanager.h"
 #include "gamescreenstate.h"
 #include "menuscreenstate.h"
+#include "mainwindow.h"
 
 ScreenStateManager *ScreenStateManager::instance()
 {
@@ -16,7 +17,6 @@ ScreenStateManager::ScreenStateManager()
 
 ScreenStateManager::~ScreenStateManager()
 {
-    qDeleteAll(mScreenStates);
 }
 
 void ScreenStateManager::changeStateTo(const char *name)
@@ -35,13 +35,13 @@ void ScreenStateManager::changeStateTo(const char *name)
 }
 
 
-bool ScreenStateManager::init(int ww, int wh)
+bool ScreenStateManager::init(int ww, int wh, MainWindow *mainwindow)
 {
     mWindowW = ww;
     mWindowH = wh;
 
-    MenuScreenState *menustate = new MenuScreenState();
-    GameScreenState *gamestate = new GameScreenState();
+    MenuScreenState *menustate = new MenuScreenState(this);
+    GameScreenState *gamestate = new GameScreenState(this);
     mScreenStates.append(menustate);
     mScreenStates.append(gamestate);
     mActiveScreenState = menustate;
@@ -51,6 +51,7 @@ bool ScreenStateManager::init(int ww, int wh)
     for (QList<ScreenState*>::iterator i = mScreenStates.begin();i != mScreenStates.end();i++)
     {
         if (!(*i)->init()) return false;
+        connect(*i,SIGNAL(repaintGL()),mainwindow,SLOT(updateGL()));
     }
 
     mActiveScreenState->load();

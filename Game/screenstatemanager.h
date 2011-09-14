@@ -2,16 +2,18 @@
 #define SCREENSTATEMANAGER_H
 #include <QList>
 #include "screenstate.h"
+class MainWindow;
 
-class ScreenStateManager
+class ScreenStateManager:public QObject
 {
+    Q_OBJECT
 public:
     ScreenStateManager();
     ~ScreenStateManager();
 
     static ScreenStateManager *instance();
 
-    bool init(int ww,int wh);
+    bool init(int ww,int wh,MainWindow *mainwindow);
     void changeStateTo(const char * name);
 
     void mouseEvent(int button,int state,int x,int y);

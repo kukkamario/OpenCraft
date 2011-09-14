@@ -1,8 +1,8 @@
 #include "gamescreenstate.h"
 #include "gltexture2d.h"
 
-GameScreenState::GameScreenState()
-    :ScreenState()
+GameScreenState::GameScreenState(QObject *parent)
+    :ScreenState(parent)
 {
 
 }
@@ -76,3 +76,4 @@ void GameScreenState::selected()
 {
 
 }
+

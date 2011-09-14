@@ -32,7 +32,8 @@ SOURCES += main.cpp \
     errorhandler.cpp \
     chunkedmap.cpp \
     shaderprogrammanager.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    screenstate.cpp
 
 HEADERS += \
     glinclude/glinclude.h \
@@ -69,6 +70,7 @@ CONFIG( debug, debug|release ) {
 OTHER_FILES += \
     shaders/chunkfragment.frag \
     shaders/chunkvertex.vert
+
 
 
 

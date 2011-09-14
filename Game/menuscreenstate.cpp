@@ -6,8 +6,8 @@
 #define FBO_WIDTH 800
 #define FBO_HEIGHT 600
 
-MenuScreenState::MenuScreenState()
-    :ScreenState()
+MenuScreenState::MenuScreenState(QObject *parent)
+    :ScreenState(parent)
 {
     mLoaded = false;
     mFPS = 0;
