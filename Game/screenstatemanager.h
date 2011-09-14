@@ -22,7 +22,8 @@ public:
     void specialKeyPressEvent(int key,int mouseX,int mouseY);
     void specialKeyReleaseEvent(int key,int mouseX,int mouseY);
     void mouseWheelEvent(int wheel,int direction);
-    void render();
+    void paintEvent(MainWindow *mainwindow);
+    void paintGL(MainWindow *mainwindow);
     void windowResize(int w,int h);
 
 private:

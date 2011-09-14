@@ -10,7 +10,7 @@ class MenuScreenState : public ScreenState
 public:
     MenuScreenState(QObject *parent = 0);
     ~MenuScreenState();
-    bool init();
+    bool init(MainWindow *mainWindow);
     void load();
     void unload();
     void mouseEvent(int button,int state,int x,int y);
@@ -19,12 +19,13 @@ public:
     void specialKeyPressEvent(int key,int mouseX,int mouseY);
     void specialKeyReleaseEvent(int key,int mouseX,int mouseY);
     void mouseWheelEvent(int wheel,int direction){} //Tuskin tarvitaan tätä...
-    void render();
+    void paintEvent(MainWindow *mainWindow);
+    void paintGL(MainWindow *mainWindow);
     void windowResize(int w,int h);
     const char *name(){return "menu";}
     void selected();
 private:
-
+    void setupGL(int w,int h);
     int mFPS;
     int mFPSCounter;
     clock_t mLastTime;

@@ -1,7 +1,7 @@
 #ifndef BLOCK_H
 #define BLOCK_H
 #include "blocktype.h"
-
+#include "shaderprogrammanager.h"
 
 class Block
 {
@@ -21,6 +21,7 @@ public:
     Block(){}
     ushort mBlockType;
     uchar mBlockVisibilityFlags;
+    ShaderProgramHandle mShaderProgram;
     uchar mLight;
     uchar mBlockGroup;
     char mBlockTypeData[2];

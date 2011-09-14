@@ -28,12 +28,12 @@ SOURCES += main.cpp \
     chunk.cpp \
     gltexture2d.cpp \
     blocktypemanager.cpp \
-    blockgroup.cpp \
     errorhandler.cpp \
     chunkedmap.cpp \
     shaderprogrammanager.cpp \
     mainwindow.cpp \
-    screenstate.cpp
+    screenstate.cpp \
+    texturehandler.cpp
 
 HEADERS += \
     glinclude/glinclude.h \
@@ -48,12 +48,12 @@ HEADERS += \
     blocktypemanager.h \
     blockvertex.h \
     block.h \
-    blockgroup.h \
     errorhandler.h \
     chunkedmap.h \
     shaderprogrammanager.h \
     precompiled_header.h \
-    mainwindow.h
+    mainwindow.h \
+    texturehandler.h
 
 
 win32{
@@ -70,6 +70,10 @@ CONFIG( debug, debug|release ) {
 OTHER_FILES += \
     shaders/chunkfragment.frag \
     shaders/chunkvertex.vert
+
+
+
+
 
 
 

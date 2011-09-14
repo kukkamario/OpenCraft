@@ -12,8 +12,9 @@ GameScreenState::~GameScreenState()
 
 }
 
-bool GameScreenState::init()
+bool GameScreenState::init(MainWindow *mainWindow)
 {
+    Q_UNUSED(mainWindow);
 //    if (!mPainter.init())
 //    {
 //        qCritical("Can't initialize glPainter.");
@@ -57,8 +58,14 @@ void GameScreenState::mouseEvent(int button, int state, int x, int y)
 
 }
 
-void GameScreenState::render()
+void GameScreenState::paintEvent(MainWindow *mainWindow)
 {
+    Q_UNUSED(mainWindow);
+}
+
+void GameScreenState::paintGL(MainWindow *mainWindow)
+{
+    Q_UNUSED(mainWindow); //T‰m‰ est‰‰ varoitukset...
 
 }
 

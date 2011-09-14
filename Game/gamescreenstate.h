@@ -9,7 +9,7 @@ class GameScreenState : public ScreenState
 public:
     GameScreenState(QObject *parent = 0);
     ~GameScreenState();
-    bool init();
+    bool init(MainWindow *mainWindow);
     void load();
     void unload();
     void mouseEvent(int button,int state,int x,int y);
@@ -18,7 +18,8 @@ public:
     void specialKeyPressEvent(int key,int mouseX,int mouseY);
     void specialKeyReleaseEvent(int key,int mouseX,int mouseY);
     void mouseWheelEvent(int wheel,int direction);
-    void render();
+    void paintGL(MainWindow *mainWindow);
+    void paintEvent(MainWindow *mainWindow);
     void windowResize(int w,int h);
     void selected();
     const char *name(){return "menu";}

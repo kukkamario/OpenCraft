@@ -50,7 +50,7 @@ bool ScreenStateManager::init(int ww, int wh, MainWindow *mainwindow)
     bool failed = false;
     for (QList<ScreenState*>::iterator i = mScreenStates.begin();i != mScreenStates.end();i++)
     {
-        if (!(*i)->init()) return false;
+        if (!(*i)->init(mainwindow)) return false;
         connect(*i,SIGNAL(repaintGL()),mainwindow,SLOT(updateGL()));
     }
 
@@ -91,10 +91,16 @@ void ScreenStateManager::mouseEvent(int button, int state, int x, int y)
     mActiveScreenState->mouseEvent(button,state,x,y);
 }
 
-void ScreenStateManager::render()
+void ScreenStateManager::paintGL(MainWindow *mainwindow)
 {
     Q_ASSERT(mActiveScreenState);
-    mActiveScreenState->render();
+    mActiveScreenState->paintGL(mainwindow);
+}
+
+void ScreenStateManager::paintEvent(MainWindow *mainwindow)
+{
+    Q_ASSERT(mActiveScreenState);
+    mActiveScreenState->paintEvent(mainwindow);
 }
 
 void ScreenStateManager::windowResize(int w,int h)

@@ -2,6 +2,7 @@
 #define CHUNK_H
 #include <QMap>
 #include <QMutex>
+class QGLShaderProgram;
 #include "block.h"
 #define CHUNK_SIZE 32
 #define CHUNK_BLOCK_COUNT 32768
@@ -30,35 +31,36 @@ struct ChunkCoord
     }
 };
 
-struct BlockGroupData
-{
-    struct BlockPosData
-    {
-        Block* ptr;
-        uchar x;
-        uchar y;
-        uchar z;
-    };
+//struct BlockGroupData
+//{
+//    struct BlockPosData
+//    {
+//        Block* ptr;
+//        uchar x;
+//        uchar y;
+//        uchar z;
+//    };
 
-    BlockGroupData(){mVBO = 0;}
-    ~BlockGroupData()
-    {
-        if (mVBO)
-        {
-            glDeleteBufferARB(1,&mVBO);
-        }
-    }
-    void reset()
-    {
-        if (mVBO)
-        {
-            glDeleteBufferARB(1,&mVBO);
-        }
-    }
-    QList<Block*> mBlocks;
-    GLuint mVBO;
-    int mVerticesTotal;
-};
+//    BlockGroupData(){mVBO = 0;}
+//    ~BlockGroupData()
+//    {
+//        if (mVBO)
+//        {
+//            glDeleteBufferARB(1,&mVBO);
+//        }
+//    }
+//    void reset()
+//    {
+//        if (mVBO)
+//        {
+//            glDeleteBufferARB(1,&mVBO);
+//        }
+//    }
+//    QList<Block*> mBlocks;
+//    GLuint mVBO;
+//    int mVerticesTotal;
+//    QGLShaderProgram *mShaderProgram;
+//};
 
 struct BlockCoord
 {
@@ -76,12 +78,9 @@ public:
     ChunkCoord pos()const{mPos;}
     Block at(int x,int y,int z)const{return mBlocks[x+y*CHUNK_SIZE+z*CHUNK_SIZE*CHUNK_SIZE];}
 private:
-    void generateVBOs();
-
-    BlockGroupData *mDrawMap[MAX_BLOCK_GROUP_DATAS];
+    //void generateVBOs();
 
     ChunkCoord mPos;
-    GLuint mVBO;
     Block mBlocks[CHUNK_BLOCK_COUNT];
     ChunkedMap *mOwner;
 };

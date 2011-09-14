@@ -1,7 +1,7 @@
 #include "menuscreenstate.h"
 #include <QImage>
 #include "glinclude/glinclude.h"
-
+#include "mainwindow.h"
 
 #define FBO_WIDTH 800
 #define FBO_HEIGHT 600
@@ -36,8 +36,9 @@ void MenuScreenState::unload()
 }
 
 
-bool MenuScreenState::init()
+bool MenuScreenState::init(MainWindow *mainWindow)
 {
+    Q_UNUSED(mainWindow);
     return true;
 }
 
@@ -67,36 +68,85 @@ void MenuScreenState::mouseEvent(int button, int state, int x, int y)
 
 }
 
-
-void MenuScreenState::render()
+void MenuScreenState::setupGL(int w, int h)
 {
-    if (clock() > mLastTime + CLOCKS_PER_SEC)
+    //Tähän OpenGL:llän säätö...
+    glViewport(0,0,w,h);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(60,(float)w/(float)h,0.1,1000);
+    glMatrixMode(GL_MODELVIEW);
+}
+
+
+void MenuScreenState::paintEvent(MainWindow *mainWindow)
+{
+    if (mLastTime + CLOCKS_PER_SEC > clock())
     {
+        mLastTime = clock();
         mFPS = mFPSCounter;
         mFPSCounter = 0;
-        mLastTime = clock();
     }
-    glLoadIdentity();
-    glRasterPos2i(100,100);
-    glColor3f(1,1,1);
-    glutBitmapString(GLUT_BITMAP_9_BY_15,(const unsigned char*)(const char*)(QByteArray("FPS:")+QByteArray::number(mFPS)));
 
+    QPainter p(mainWindow);
+
+    glPushAttrib(GL_ALL_ATTRIB_BITS);
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glEnable(GL_MULTISAMPLE);
+
+    setupGL(mWindowW, mWindowH);
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity();
+
+
+    //Tähän kaikki opengl taustan piirto...
+    gluLookAt(0,0,5,0,0,0,0,1,0);
+
+    glBegin(GL_TRIANGLES);
+        glColor3f(1,0,0);glVertex3f(1,1,0);
+        glColor3f(0,1,0);glVertex3f(-1,1,0);
+        glColor3f(0,0,1);glVertex3f(0,-1,0);
+    glEnd();
+
+
+    //---------------------------------
+
+
+    glPopAttrib();
+    glMatrixMode(GL_MODELVIEW);
+    glPopMatrix();
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+
+
+    p.setBackgroundMode(Qt::TransparentMode);
+    p.drawText(200,200,QString("QPainter: FPS:")+QString::number(mFPS));
+
+    p.end();
     mFPSCounter++;
+}
+
+void MenuScreenState::paintGL(MainWindow *mainWindow)
+{
+    //Yllätys... Eipäs laitetakkaan tähän mitään... Vaatii hieman kikkailua että saadaan
+    //OpenGL:llä renderöity tausta ja QPainterilla piirretyt napit toimimaan...
+    //Tässä asiasta enemmän: http://doc.qt.nokia.com/latest/opengl-overpainting.html
+
 }
 
 void MenuScreenState::windowResize(int w,int h)
 {
-    glViewport(0,0,w,h);
+    setupGL(w,h);
     mWindowW = w;
     mWindowH = h;
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(0,w,h,0,0,1);
-    glMatrixMode(GL_MODELVIEW);
 }
 
 void MenuScreenState::selected()
 {
     glEnable(GL_TEXTURE_2D);
-    glDisable(GL_DEPTH_TEST);
+    glClearColor(1,0,0,0);
 }

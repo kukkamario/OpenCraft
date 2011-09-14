@@ -7,23 +7,30 @@
 
 #define MAGIC_NUMBER (0x01412533)
 
+
 ShaderProgramManager::ShaderProgramManager(QObject *parent)
     :QObject(parent)
 {
-
+    mShaderProgramPtrCounter = 1;
+    memset(mShaderProgramArray,0,MAX_SHADER_PROGRAMS*sizeof(ShaderProgramInfo*));
 }
 
 ShaderProgramManager::~ShaderProgramManager()
 {
+    for (int i = 0;i != MAX_SHADER_PROGRAMS;i++)
+    {
+        if (mShaderProgramArray[i]) delete mShaderProgramArray[i];
+    }
 }
 
-QGLShaderProgram *ShaderProgramManager::load(const QString &path, QualityMode qmode, CustomMode cmode)
+ShaderProgramHandle ShaderProgramManager::load(const QString &path, QualityMode qmode, CustomMode cmode)
 {
+    Q_ASSERT(mShaderProgramPtrCounter < MAX_SHADER_PROGRAMS);
     QFile file(path);
     if (!file.open(QIODevice::ReadOnly))
     {
         ErrorHandler::instance()->raiseError(QString("Can't open shaderprogram file %1").arg(path));
-        return false;
+        return -1;
     }
 
     int magicnum = 0;
@@ -33,7 +40,7 @@ QGLShaderProgram *ShaderProgramManager::load(const QString &path, QualityMode qm
     {
         ErrorHandler::instance()->raiseError(QString("Invalid shaderprogram file %1").arg(path));
         file.close();
-        return false;
+        return -1;
     }
 
     int versionnum;
@@ -41,7 +48,7 @@ QGLShaderProgram *ShaderProgramManager::load(const QString &path, QualityMode qm
     if (versionnum != 0x00000001)
     {
         ErrorHandler::instance()->raiseError(QString("Invalid shaderprogram file version %1").arg(path));
-        return false;
+        return -1;
     }
 
     QString name;
@@ -102,7 +109,7 @@ QGLShaderProgram *ShaderProgramManager::load(const QString &path, QualityMode qm
         ErrorHandler::instance()->raiseError(tr("Compiling fragmentshader of %1 failed.\n OpenGL msg: %2").arg(path,fragmentShader->log()));
         delete vertexShader;
         delete fragmentShader;
-        return 0;
+        return -1;
     }
     else
     {
@@ -120,10 +127,15 @@ QGLShaderProgram *ShaderProgramManager::load(const QString &path, QualityMode qm
         delete program;
         delete vertexShader;
         delete fragmentShader;
-        return 0;
+        return -1;
     }
+    ShaderProgramInfo *info = new ShaderProgramInfo;
+    info->mPtr = program;
+    info->mName = name;
+    info->mPath = path;
 
-    mShaderPrograms[name] = program;
+    mShaderPrograms[name] = info;
+    mShaderProgramArray[mShaderProgramPtrCounter] = info;
 
-    return program;
+    return mShaderProgramPtrCounter++;
 }

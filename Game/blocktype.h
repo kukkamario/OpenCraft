@@ -17,14 +17,12 @@ class BlockType
 public:
     BlockType();
     ushort index()const{return mIndex;}
-    QString name()const;
-    int countVertices()const{return mVertexCount;}
-    const BlockVertex *getVertices()const{return mVertices;}
+    QString name()const{return mName;}
+    GLuint vbo()const{return mVBO;}
 private:
     QString mName;
     ushort mIndex;
-    int mVertexCount;
-    BlockVertex *mVertices;
+    GLuint mVBO;
 };
 
 #endif // BLOCKTYPE_H
