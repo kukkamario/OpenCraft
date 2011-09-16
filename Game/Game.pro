@@ -34,7 +34,9 @@ SOURCES += main.cpp \
     mainwindow.cpp \
     screenstate.cpp \
     texturehandler.cpp \
-    ocguibutton.cpp
+    ocguibutton.cpp \
+    ocaudioengine.cpp \
+    ocaudiothread.cpp
 
 HEADERS += \
     glinclude/glinclude.h \
@@ -56,7 +58,9 @@ HEADERS += \
     mainwindow.h \
     texturehandler.h \
     ocguibutton.h \
-    ocguiobject.h
+    ocguiobject.h \
+    ocaudioengine.h \
+    ocaudiothread.h
 
 
 win32{
@@ -151,6 +155,16 @@ OTHER_FILES += \
 
 
 
+
+
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/OpenAL/libs/ -lOpenAL32
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/OpenAL/libs/ -lOpenAL32
+else:symbian: LIBS += -lOpenAL32
+else:unix: LIBS += -L$$PWD/OpenAL/libs/ -lOpenAL32
+
+INCLUDEPATH += $$PWD/OpenAL/include
+DEPENDPATH += $$PWD/OpenAL/include
 
 
 
