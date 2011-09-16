@@ -26,9 +26,13 @@ signals:
 
 public slots:
 
+private slots:
+    void updateScreenState();
+
 private:
     bool mAutoRepaintEnabled;
     QTimer *mAutoRepaintTimer;
+    QTimer *mUpdateTimer;
 };
 
 #endif // MAINWINDOW_H

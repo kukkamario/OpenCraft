@@ -22,6 +22,7 @@ public:
     void paintEvent(MainWindow *mainWindow);
     void windowResize(int w,int h);
     void selected();
+    void update();
     const char *name(){return "menu";}
 private:
     glPainter mPainter;

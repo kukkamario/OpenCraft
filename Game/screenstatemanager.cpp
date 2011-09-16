@@ -116,3 +116,9 @@ void ScreenStateManager::mouseWheelEvent(QWheelEvent *e)
     Q_ASSERT(mActiveScreenState);
     mActiveScreenState->mouseWheelEvent(e);
 }
+
+void ScreenStateManager::update()
+{
+    Q_ASSERT(mActiveScreenState);
+    mActiveScreenState->update();
+}

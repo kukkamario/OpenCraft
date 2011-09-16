@@ -9,7 +9,17 @@ MainWindow::MainWindow(QWidget *parent) :
     mAutoRepaintTimer = new QTimer(this);
     mAutoRepaintTimer->setInterval(10);
     connect(mAutoRepaintTimer,SIGNAL(timeout()),this,SLOT(updateGL()));
+
+    mUpdateTimer = new QTimer(this);
+    connect(mUpdateTimer,SIGNAL(timeout()),this,SLOT(updateScreenState()));
+
 }
+
+void MainWindow::updateScreenState()
+{
+    ScreenStateManager::instance()->update();
+}
+
 void MainWindow::setAutoRepaint(bool enabled)
 {
     if (mAutoRepaintEnabled)

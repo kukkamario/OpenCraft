@@ -25,7 +25,7 @@ public:
     void paintEvent(MainWindow *mainwindow);
     void paintGL(MainWindow *mainwindow);
     void windowResize(int w,int h);
-
+    void update();
 private:
     QList<ScreenState*> mScreenStates;
     ScreenState *mActiveScreenState;

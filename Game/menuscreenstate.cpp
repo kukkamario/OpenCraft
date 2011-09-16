@@ -45,28 +45,28 @@ bool MenuScreenState::init(MainWindow *mainWindow)
 
 void MenuScreenState::keyPressEvent(QKeyEvent *event)
 {
-    Q_UNUSED(event);
+    mGui.keyPressEvent(event);
 }
 
 void MenuScreenState::keyReleaseEvent(QKeyEvent *event)
 {
-    Q_UNUSED(event);
+    mGui.keyReleaseEvent(event);
 }
 
 
 void MenuScreenState::mousePressEvent(QMouseEvent *event)
 {
-    Q_UNUSED(event);
+    mGui.mousePressEvent(event);
 }
 
 void MenuScreenState::mouseReleaseEvent(QMouseEvent *event)
 {
-    Q_UNUSED(event);
+    mGui.mouseReleaseEvent(event);
 }
 
 void MenuScreenState::mouseMoveEvent(QMouseEvent *event)
 {
-    Q_UNUSED(event);
+    mGui.mouseMoveEvent(event);
 }
 
 void MenuScreenState::setupGL(int w, int h)
@@ -151,4 +151,9 @@ void MenuScreenState::selected()
 {
     glEnable(GL_TEXTURE_2D);
     glClearColor(1,0,0,0);
+}
+
+void MenuScreenState::update()
+{
+    mGui.update();
 }

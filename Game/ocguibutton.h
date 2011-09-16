@@ -17,7 +17,9 @@ public:
     void mousePressEvent(QMouseEvent *mouseEvent);
     void mouseReleaseEvent(QMouseEvent *mouseEvent);
     void mouseMoveEvent(QMouseEvent *mouseEvent);
-
+    void mouseWheelEvent(QWheelEvent *){}
+    void keyPressEvent(QKeyEvent *){}
+    void keyReleaseEvent(QKeyEvent *){}
 signals:
     void pressed();
 };

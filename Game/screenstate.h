@@ -24,11 +24,12 @@ public:
     virtual void paintEvent(MainWindow *mainWindow) = 0;
     virtual void paintGL(MainWindow *mainWindow) = 0;
     virtual void windowResize(int w,int h) = 0;
+    virtual void update() = 0;
     virtual const char *name() = 0;
     virtual void selected() = 0;
 signals:
     void repaintGL();
-    void update();
+    void updateWindow();
 };
 
 #endif // SCREENSTATE_H

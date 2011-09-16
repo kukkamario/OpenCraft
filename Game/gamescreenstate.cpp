@@ -85,3 +85,8 @@ void GameScreenState::selected()
 
 }
 
+void GameScreenState::update()
+{
+
+}
+
