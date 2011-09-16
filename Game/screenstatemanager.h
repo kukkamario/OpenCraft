@@ -16,12 +16,12 @@ public:
     bool init(int ww,int wh,MainWindow *mainwindow);
     void changeStateTo(const char * name);
 
-    void mouseEvent(int button,int state,int x,int y);
-    void keyPressEvent(unsigned char key,int mouseX,int mouseY);
-    void keyReleaseEvent(unsigned char key,int mouseX,int mouseY);
-    void specialKeyPressEvent(int key,int mouseX,int mouseY);
-    void specialKeyReleaseEvent(int key,int mouseX,int mouseY);
-    void mouseWheelEvent(int wheel,int direction);
+    void mouseMoveEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+    void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent *event);
+    void mouseWheelEvent(QWheelEvent *e);
     void paintEvent(MainWindow *mainwindow);
     void paintGL(MainWindow *mainwindow);
     void windowResize(int w,int h);

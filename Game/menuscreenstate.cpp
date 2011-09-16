@@ -43,29 +43,30 @@ bool MenuScreenState::init(MainWindow *mainWindow)
 }
 
 
-void MenuScreenState::keyPressEvent(unsigned char key, int mouseX, int mouseY)
+void MenuScreenState::keyPressEvent(QKeyEvent *event)
 {
-
+    Q_UNUSED(event);
 }
 
-void MenuScreenState::keyReleaseEvent(unsigned char key, int mouseX, int mouseY)
+void MenuScreenState::keyReleaseEvent(QKeyEvent *event)
 {
-
+    Q_UNUSED(event);
 }
 
-void MenuScreenState::specialKeyPressEvent(int key, int mouseX, int mouseY)
-{
 
+void MenuScreenState::mousePressEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event);
 }
 
-void MenuScreenState::specialKeyReleaseEvent(int key, int mouseX, int mouseY)
+void MenuScreenState::mouseReleaseEvent(QMouseEvent *event)
 {
-
+    Q_UNUSED(event);
 }
 
-void MenuScreenState::mouseEvent(int button, int state, int x, int y)
+void MenuScreenState::mouseMoveEvent(QMouseEvent *event)
 {
-
+    Q_UNUSED(event);
 }
 
 void MenuScreenState::setupGL(int w, int h)
@@ -81,7 +82,7 @@ void MenuScreenState::setupGL(int w, int h)
 
 void MenuScreenState::paintEvent(MainWindow *mainWindow)
 {
-    if (mLastTime + CLOCKS_PER_SEC > clock())
+    if (mLastTime + CLOCKS_PER_SEC < clock())
     {
         mLastTime = clock();
         mFPS = mFPSCounter;

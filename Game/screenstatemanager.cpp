@@ -61,34 +61,34 @@ bool ScreenStateManager::init(int ww, int wh, MainWindow *mainwindow)
 }
 
 
-void ScreenStateManager::keyPressEvent(unsigned char key, int mouseX, int mouseY)
+void ScreenStateManager::keyPressEvent(QKeyEvent *event)
 {
     Q_ASSERT(mActiveScreenState);
-    mActiveScreenState->keyPressEvent(key,mouseX,mouseY);
+    mActiveScreenState->keyPressEvent(event);
 }
 
-void ScreenStateManager::keyReleaseEvent(unsigned char key, int mouseX, int mouseY)
+void ScreenStateManager::keyReleaseEvent(QKeyEvent *event)
 {
     Q_ASSERT(mActiveScreenState);
-    mActiveScreenState->keyReleaseEvent(key,mouseX,mouseY);
+    mActiveScreenState->keyReleaseEvent(event);
 }
 
-void ScreenStateManager::specialKeyPressEvent(int key, int mouseX, int mouseY)
+void ScreenStateManager::mousePressEvent(QMouseEvent *event)
 {
     Q_ASSERT(mActiveScreenState);
-    mActiveScreenState->specialKeyPressEvent(key,mouseX,mouseY);
+    mActiveScreenState->mousePressEvent(event);
 }
 
-void ScreenStateManager::specialKeyReleaseEvent(int key, int mouseX, int mouseY)
+void ScreenStateManager::mouseMoveEvent(QMouseEvent *event)
 {
     Q_ASSERT(mActiveScreenState);
-    mActiveScreenState->specialKeyReleaseEvent(key,mouseX,mouseY);
+    mActiveScreenState->mouseMoveEvent(event);
 }
 
-void ScreenStateManager::mouseEvent(int button, int state, int x, int y)
+void ScreenStateManager::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_ASSERT(mActiveScreenState);
-    mActiveScreenState->mouseEvent(button,state,x,y);
+    mActiveScreenState->mouseReleaseEvent(event);
 }
 
 void ScreenStateManager::paintGL(MainWindow *mainwindow)
@@ -111,8 +111,8 @@ void ScreenStateManager::windowResize(int w,int h)
     mActiveScreenState->windowResize(w,h);
 }
 
-void ScreenStateManager::mouseWheelEvent(int wheel, int direction)
+void ScreenStateManager::mouseWheelEvent(QWheelEvent *e)
 {
     Q_ASSERT(mActiveScreenState);
-    mActiveScreenState->mouseWheelEvent(wheel,direction);
+    mActiveScreenState->mouseWheelEvent(e);
 }

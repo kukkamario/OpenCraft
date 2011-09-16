@@ -52,3 +52,33 @@ void MainWindow::paintEvent(QPaintEvent *)
 {
     ScreenStateManager::instance()->paintEvent(this);
 }
+
+
+
+void MainWindow::mousePressEvent(QMouseEvent *e)
+{
+    ScreenStateManager::instance()->mousePressEvent(e);
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent *e)
+{
+    ScreenStateManager::instance()->mouseMoveEvent(e);
+}
+void MainWindow::mouseReleaseEvent(QMouseEvent *e)
+{
+    ScreenStateManager::instance()->mouseReleaseEvent(e);
+}
+void MainWindow::keyPressEvent(QKeyEvent *e)
+{
+    ScreenStateManager::instance()->keyPressEvent(e);
+}
+
+void MainWindow::keyReleaseEvent(QKeyEvent *e)
+{
+    ScreenStateManager::instance()->keyReleaseEvent(e);
+}
+
+void MainWindow::wheelEvent(QWheelEvent *e)
+{
+    ScreenStateManager::instance()->mouseWheelEvent(e);
+}

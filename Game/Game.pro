@@ -34,7 +34,8 @@ SOURCES += main.cpp \
     mainwindow.cpp \
     screenstate.cpp \
     texturehandler.cpp \
-    ocguibutton.cpp
+    ocguibutton.cpp \
+    ocgui.cpp
 
 HEADERS += \
     glinclude/glinclude.h \
@@ -56,7 +57,8 @@ HEADERS += \
     mainwindow.h \
     texturehandler.h \
     ocguibutton.h \
-    ocguiobject.h
+    ocguiobject.h \
+    ocgui.h
 
 
 win32{
@@ -73,6 +75,8 @@ CONFIG( debug, debug|release ) {
 OTHER_FILES += \
     shaders/chunkfragment.frag \
     shaders/chunkvertex.vert
+
+
 
 
 
