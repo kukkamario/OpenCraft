@@ -9,7 +9,17 @@ MainWindow::MainWindow(QWidget *parent) :
     mAutoRepaintTimer = new QTimer(this);
     mAutoRepaintTimer->setInterval(10);
     connect(mAutoRepaintTimer,SIGNAL(timeout()),this,SLOT(updateGL()));
+
+    mUpdateTimer = new QTimer(this);
+    connect(mUpdateTimer,SIGNAL(timeout()),this,SLOT(updateScreenState()));
+
 }
+
+void MainWindow::updateScreenState()
+{
+    ScreenStateManager::instance()->update();
+}
+
 void MainWindow::setAutoRepaint(bool enabled)
 {
     if (mAutoRepaintEnabled)
@@ -51,4 +61,34 @@ void MainWindow::initializeGL()
 void MainWindow::paintEvent(QPaintEvent *)
 {
     ScreenStateManager::instance()->paintEvent(this);
+}
+
+
+
+void MainWindow::mousePressEvent(QMouseEvent *e)
+{
+    ScreenStateManager::instance()->mousePressEvent(e);
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent *e)
+{
+    ScreenStateManager::instance()->mouseMoveEvent(e);
+}
+void MainWindow::mouseReleaseEvent(QMouseEvent *e)
+{
+    ScreenStateManager::instance()->mouseReleaseEvent(e);
+}
+void MainWindow::keyPressEvent(QKeyEvent *e)
+{
+    ScreenStateManager::instance()->keyPressEvent(e);
+}
+
+void MainWindow::keyReleaseEvent(QKeyEvent *e)
+{
+    ScreenStateManager::instance()->keyReleaseEvent(e);
+}
+
+void MainWindow::wheelEvent(QWheelEvent *e)
+{
+    ScreenStateManager::instance()->mouseWheelEvent(e);
 }

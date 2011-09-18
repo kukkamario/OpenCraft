@@ -3,6 +3,7 @@
 #include "screenstate.h"
 #include "gltexture2d.h"
 #include "time.h"
+#include "ocgui.h"
 
 class MenuScreenState : public ScreenState
 {
@@ -13,22 +14,26 @@ public:
     bool init(MainWindow *mainWindow);
     void load();
     void unload();
-    void mouseEvent(int button,int state,int x,int y);
-    void keyPressEvent(unsigned char key,int mouseX,int mouseY);
-    void keyReleaseEvent(unsigned char key,int mouseX,int mouseY);
-    void specialKeyPressEvent(int key,int mouseX,int mouseY);
-    void specialKeyReleaseEvent(int key,int mouseX,int mouseY);
-    void mouseWheelEvent(int wheel,int direction){} //Tuskin tarvitaan tätä...
+
+    void mouseMoveEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+    void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent *event);
+    void mouseWheelEvent(QWheelEvent *e){}
+
     void paintEvent(MainWindow *mainWindow);
     void paintGL(MainWindow *mainWindow);
     void windowResize(int w,int h);
     const char *name(){return "menu";}
     void selected();
+    void update();
 private:
     void setupGL(int w,int h);
     int mFPS;
     int mFPSCounter;
     clock_t mLastTime;
+    OCGui mGui;
 
     bool mLoaded;
     float mWindowW;

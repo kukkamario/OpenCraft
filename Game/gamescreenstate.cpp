@@ -33,29 +33,30 @@ void GameScreenState::unload()
 
 }
 
-void GameScreenState::keyPressEvent(unsigned char key, int mouseX, int mouseY)
+void GameScreenState::keyPressEvent(QKeyEvent *event)
 {
-
+    Q_UNUSED(event);
 }
 
-void GameScreenState::keyReleaseEvent(unsigned char key, int mouseX, int mouseY)
+void GameScreenState::keyReleaseEvent(QKeyEvent *event)
 {
-
+    Q_UNUSED(event);
 }
 
-void GameScreenState::specialKeyPressEvent(int key, int mouseX, int mouseY)
-{
 
+void GameScreenState::mousePressEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event);
 }
 
-void GameScreenState::specialKeyReleaseEvent(int key, int mouseX, int mouseY)
+void GameScreenState::mouseReleaseEvent(QMouseEvent *event)
 {
-
+    Q_UNUSED(event);
 }
 
-void GameScreenState::mouseEvent(int button, int state, int x, int y)
+void GameScreenState::mouseMoveEvent(QMouseEvent *event)
 {
-
+    Q_UNUSED(event);
 }
 
 void GameScreenState::paintEvent(MainWindow *mainWindow)
@@ -74,12 +75,17 @@ void GameScreenState::windowResize(int w,int h)
 
 }
 
-void GameScreenState::mouseWheelEvent(int wheel,int direction)
+void GameScreenState::mouseWheelEvent(QWheelEvent *e)
+{
+    Q_UNUSED(e);
+}
+
+void GameScreenState::selected()
 {
 
 }
 
-void GameScreenState::selected()
+void GameScreenState::update()
 {
 
 }

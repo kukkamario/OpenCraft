@@ -9,5 +9,9 @@
 #include <QImage>
 #include "glinclude/glinclude.h"
 #include <time.h>
+#include <QMouseEvent>
+#include <QWidget>
+#include <QVector3D>
+#include <QMatrix4x4>
 
 #endif // PRECOMPILER_HEADER_H

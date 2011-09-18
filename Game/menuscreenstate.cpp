@@ -43,29 +43,30 @@ bool MenuScreenState::init(MainWindow *mainWindow)
 }
 
 
-void MenuScreenState::keyPressEvent(unsigned char key, int mouseX, int mouseY)
+void MenuScreenState::keyPressEvent(QKeyEvent *event)
 {
-
+    mGui.keyPressEvent(event);
 }
 
-void MenuScreenState::keyReleaseEvent(unsigned char key, int mouseX, int mouseY)
+void MenuScreenState::keyReleaseEvent(QKeyEvent *event)
 {
-
+    mGui.keyReleaseEvent(event);
 }
 
-void MenuScreenState::specialKeyPressEvent(int key, int mouseX, int mouseY)
-{
 
+void MenuScreenState::mousePressEvent(QMouseEvent *event)
+{
+    mGui.mousePressEvent(event);
 }
 
-void MenuScreenState::specialKeyReleaseEvent(int key, int mouseX, int mouseY)
+void MenuScreenState::mouseReleaseEvent(QMouseEvent *event)
 {
-
+    mGui.mouseReleaseEvent(event);
 }
 
-void MenuScreenState::mouseEvent(int button, int state, int x, int y)
+void MenuScreenState::mouseMoveEvent(QMouseEvent *event)
 {
-
+    mGui.mouseMoveEvent(event);
 }
 
 void MenuScreenState::setupGL(int w, int h)
@@ -81,7 +82,7 @@ void MenuScreenState::setupGL(int w, int h)
 
 void MenuScreenState::paintEvent(MainWindow *mainWindow)
 {
-    if (mLastTime + CLOCKS_PER_SEC > clock())
+    if (mLastTime + CLOCKS_PER_SEC < clock())
     {
         mLastTime = clock();
         mFPS = mFPSCounter;
@@ -150,4 +151,9 @@ void MenuScreenState::selected()
 {
     glEnable(GL_TEXTURE_2D);
     glClearColor(1,0,0,0);
+}
+
+void MenuScreenState::update()
+{
+    mGui.update();
 }
