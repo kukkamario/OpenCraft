@@ -35,9 +35,11 @@ SOURCES += main.cpp \
     screenstate.cpp \
     texturehandler.cpp \
     ocguibutton.cpp \
-    ocaudioengine.cpp \
-    ocaudiothread.cpp \
-    ocgui.cpp
+    AudioEngine/ocaudioengine.cpp \
+    AudioEngine/ocaudiothread.cpp \
+    ocgui.cpp \
+    AudioEngine/ocsound.cpp \
+    AudioEngine/ocmusic.cpp
 
 HEADERS += \
     glinclude/glinclude.h \
@@ -60,9 +62,11 @@ HEADERS += \
     texturehandler.h \
     ocguibutton.h \
     ocguiobject.h \
-    ocaudioengine.h \
-    ocaudiothread.h \
-    ocgui.h
+    AudioEngine/ocaudioengine.h \
+    AudioEngine/ocaudiothread.h \
+    ocgui.h \
+    AudioEngine/ocsound.h \
+    AudioEngine/ocmusic.h
 
 
 win32{
@@ -76,87 +80,6 @@ CONFIG( debug, debug|release ) {
     LIBS += -L"libs" -lfreeglut_static
 }
 
-OTHER_FILES += \
-    shaders/chunkfragment.frag \
-    shaders/chunkvertex.vert
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -167,6 +90,10 @@ else:unix: LIBS += -L$$PWD/OpenAL/libs/ -lOpenAL32
 
 INCLUDEPATH += $$PWD/OpenAL/include
 DEPENDPATH += $$PWD/OpenAL/include
+
+
+
+
 
 
 
