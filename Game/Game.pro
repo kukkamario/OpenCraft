@@ -36,7 +36,8 @@ SOURCES += main.cpp \
     texturehandler.cpp \
     ocguibutton.cpp \
     ocaudioengine.cpp \
-    ocaudiothread.cpp
+    ocaudiothread.cpp \
+    ocgui.cpp
 
 HEADERS += \
     glinclude/glinclude.h \
@@ -60,7 +61,8 @@ HEADERS += \
     ocguibutton.h \
     ocguiobject.h \
     ocaudioengine.h \
-    ocaudiothread.h
+    ocaudiothread.h \
+    ocgui.h
 
 
 win32{
@@ -165,6 +167,8 @@ else:unix: LIBS += -L$$PWD/OpenAL/libs/ -lOpenAL32
 
 INCLUDEPATH += $$PWD/OpenAL/include
 DEPENDPATH += $$PWD/OpenAL/include
+
+
 
 
 
