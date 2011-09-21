@@ -4,6 +4,7 @@
 #include <QTextStream>
 #include "errorhandler.h"
 #include <QGLShader>
+#include "glinclude/glinclude.h"
 
 #define MAGIC_NUMBER (0x01412533)
 
@@ -117,9 +118,13 @@ ShaderProgramHandle ShaderProgramManager::load(const QString &path, QualityMode 
     }
 
 
-    QGLShaderProgram *program = new QGLShaderProgram(this);
+    ShaderProgram *program = new ShaderProgram(this);
     program->addShader(vertexShader);
     program->addShader(fragmentShader);
+    program->bindAttributeLocation("position",GLSL_POS_VERTEX_COORDS);
+    program->bindAttributeLocation("normal",GLSL_POS_NORMAL);
+    program->bindAttributeLocation("texCoord",GLSL_POS_TEXTURE_COORDS);
+    program->bindAttributeLocation("color",GLSL_POS_COLOR);
     if (!program->link())
     {
         ErrorHandler::instance()->raiseError(tr("Linking of %1 failed. \n OpenGL log: %2").arg(path,program->log()));
@@ -129,6 +134,8 @@ ShaderProgramHandle ShaderProgramManager::load(const QString &path, QualityMode 
         delete fragmentShader;
         return -1;
     }
+    program->checkTextureLocation();
+
     ShaderProgramInfo *info = new ShaderProgramInfo;
     info->mPtr = program;
     info->mName = name;

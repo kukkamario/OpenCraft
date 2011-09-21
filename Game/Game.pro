@@ -33,13 +33,14 @@ SOURCES += main.cpp \
     shaderprogrammanager.cpp \
     mainwindow.cpp \
     screenstate.cpp \
-    texturehandler.cpp \
     ocguibutton.cpp \
     AudioEngine/ocaudioengine.cpp \
     AudioEngine/ocaudiothread.cpp \
     ocgui.cpp \
     AudioEngine/ocsound.cpp \
-    AudioEngine/ocmusic.cpp
+    AudioEngine/ocmusic.cpp \
+    shaderprogram.cpp \
+    blocktexturehandler.cpp
 
 HEADERS += \
     glinclude/glinclude.h \
@@ -59,14 +60,15 @@ HEADERS += \
     shaderprogrammanager.h \
     precompiled_header.h \
     mainwindow.h \
-    texturehandler.h \
     ocguibutton.h \
     ocguiobject.h \
     AudioEngine/ocaudioengine.h \
     AudioEngine/ocaudiothread.h \
     ocgui.h \
     AudioEngine/ocsound.h \
-    AudioEngine/ocmusic.h
+    AudioEngine/ocmusic.h \
+    shaderprogram.h \
+    blocktexturehandler.h
 
 
 win32{
@@ -90,6 +92,12 @@ else:unix: LIBS += -L$$PWD/OpenAL/libs/ -lOpenAL32
 
 INCLUDEPATH += $$PWD/OpenAL/include
 DEPENDPATH += $$PWD/OpenAL/include
+
+
+
+
+
+
 
 
 

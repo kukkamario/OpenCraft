@@ -22,6 +22,11 @@ PFNGLUNIFORM1IARBPROC            glUniform1iARB;
 PFNGLACTIVETEXTUREARBPROC        glActiveTextureARB;
 PFNGLGETINFOLOGARBPROC           glGetInfoLogARB;
 PFNGLDELETEOBJECTARBPROC         glDeleteObjectARB;
+PFNGLMULTITEXCOORD1FVPROC        glMultiTexCoord1fvProg;
+PFNGLMULTITEXCOORD2FVPROC        glMultiTexCoord2fvProg;
+PFNGLMULTITEXCOORD3FVPROC        glMultiTexCoord3fvProg;
+PFNGLMULTITEXCOORD4FVPROC        glMultiTexCoord4fvProg;
+PFNGLVERTEXATTRIBPOINTERARBPROC  glVertexAttribPointerARB;
 
 bool loadExtension(const QGLContext *context)
 {
@@ -35,7 +40,7 @@ bool loadExtension(const QGLContext *context)
     mglDeleteBuffersARB = (PFNGLDELETEBUFFERSARBPROC)context->getProcAddress("glDeleteBuffersARB");
 
     qDebug(qPrintable("OpenGL version:"+QString((const char*)glGetString(GL_VERSION))));
-    if (glutExtensionSupported("GL_ARB_vertex_shader") && glutExtensionSupported("GL_ARB_fragment_shader"))
+    if (glutExtensionSupported("GL_ARB_vertex_shader") && glutExtensionSupported("GL_ARB_fragment_shader") && glutExtensionSupported("GL_ARB_fragment_shader"))
     {
         glCreateProgramObjectARB = (PFNGLCREATEPROGRAMOBJECTARBPROC)context->getProcAddress("glCreateProgramObjectARB");
         glUseProgramObjectARB = (PFNGLUSEPROGRAMOBJECTARBPROC)context->getProcAddress("glUseProgramObjectARB");
@@ -49,6 +54,11 @@ bool loadExtension(const QGLContext *context)
         glGetUniformLocationARB = (PFNGLGETUNIFORMLOCATIONARBPROC)context->getProcAddress("glGetUniformLocationARB");
         glUniform1iARB = (PFNGLUNIFORM1IARBPROC)context->getProcAddress("glUniform1iARB");
         glDeleteObjectARB = (PFNGLDELETEOBJECTARBPROC)context->getProcAddress("glDeleteObjectARB");
+        glMultiTexCoord1fvProg = (PFNGLMULTITEXCOORD1FVPROC)context->getProcAddress("glMultiTexCoord1fv");
+        glMultiTexCoord2fvProg = (PFNGLMULTITEXCOORD2FVPROC)context->getProcAddress("glMultiTexCoord2fv");
+        glMultiTexCoord3fvProg = (PFNGLMULTITEXCOORD3FVPROC)context->getProcAddress("glMultiTexCoord3fv");
+        glMultiTexCoord4fvProg = (PFNGLMULTITEXCOORD4FVPROC)context->getProcAddress("glMultiTexCoord4fv");
+        glVertexAttribPointerARB = (PFNGLVERTEXATTRIBPOINTERARBPROC)context->getProcAddress("glVertexAttribPointerARB");
     }
     else
     {
@@ -145,3 +155,26 @@ void glDeleteBufferARB(GLsizei n,GLuint *buffers)
         mglDeleteBuffersARB(n,buffers);
 }
 
+
+void glMultiTexCoord1fv(GLenum target,float *coord)
+{
+    glMultiTexCoord1fvProg(target,coord);
+}
+
+void glMultiTexCoord2fv(GLenum target,float *coord)
+{
+    glMultiTexCoord2fvProg(target,coord);
+}
+void glMultiTexCoord3fv(GLenum target,float *coord)
+{
+    glMultiTexCoord3fvProg(target,coord);
+}
+void glMultiTexCoord4fv(GLenum target,float *coord)
+{
+    glMultiTexCoord4fvProg(target,coord);
+}
+
+void glVertexAttribPointer(GLuint index,GLint size,GLenum type,GLboolean normalized,GLsizei stride,const GLvoid *pointer)
+{
+    glVertexAttribPointerARB(index,size,type,normalized,stride,pointer);
+}

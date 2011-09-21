@@ -1,5 +1,6 @@
 #include "chunkedmap.h"
 
-ChunkedMap::ChunkedMap()
+ChunkedMap::ChunkedMap(QGLWidget *owner)
+    :mTextureHandler(owner)
 {
 }

@@ -21,7 +21,6 @@ public:
     Block(){}
     ushort mBlockType;
     uchar mBlockVisibilityFlags;
-    ShaderProgramHandle mShaderProgram;
     uchar mLight;
     uchar mBlockGroup;
     char mBlockTypeData[2];
