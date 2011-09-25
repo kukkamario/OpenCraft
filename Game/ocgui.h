@@ -8,6 +8,7 @@ class OCGui:public QObject
 public:
     OCGui(QObject *parent = 0);
     void add(OCGuiObject *object);
+    void remove(OCGuiObject *object);
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);

@@ -11,13 +11,11 @@
 class OCGuiButton: public OCGuiObject {
     Q_OBJECT
 
-    QPixmap mImage;
-    QRect mRect;
+    QPixmap *mImage;
 
 public:
-    OCGuiButton(QPixmap *texture = 0, int x = 0, int y = 0, int w = 0, int h = 0);
-    void setGeometry(int x, int y, int w, int h);
-    void setTextrue(QPixmap texture);
+    OCGuiButton(QObject *parent = 0);
+    void setTexture(QPixmap *texture);
     void paint(QPainter *p);
 
     void update();

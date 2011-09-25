@@ -1,23 +1,25 @@
 #include "ocguibutton.h"
 
-OCGuiButton::OCGuiButton(QPixmap *texture, int x, int y, int w, int h){
-    if(texture != 0){mImage = *texture;}
-    if(x*y!=0 || w*h!=0){mRect.setRect(x, y, w, h);}
+OCGuiButton::OCGuiButton(QObject *parent)
+    :OCGuiObject(parent)
+{
+    mImage = 0;
 }
 
-void OCGuiButton::setGeometry(int x, int y, int w, int h){
-    mRect.setRect(x, y, w, h);
-}
 
-void OCGuiButton::setTextrue(QPixmap texture){
+void OCGuiButton::setTexture(QPixmap *texture){
     mImage = texture;
 }
 
-void OCGuiButton::paint(QPainter *p){
-    p->drawPixmap(mRect.x(), mRect.y(), mRect.width(), mRect.height(), mImage);
+void OCGuiButton::paint(QPainter *p)
+{
+    Q_ASSERT(mImage);
+    p->drawPixmap(mRect, *mImage);
 }
 
-void OCGuiButton::update(){
+void OCGuiButton::update()
+{
+
 }
 
 void OCGuiButton::mouseMoveEvent(QMouseEvent *mouseEvent)

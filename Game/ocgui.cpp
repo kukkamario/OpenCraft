@@ -13,6 +13,12 @@ void OCGui::add(OCGuiObject *object)
     mObjects.append(object);
 }
 
+void OCGui::remove(OCGuiObject *object)
+{
+    object->setParent(this);
+    mObjects.removeOne(object);
+}
+
 void OCGui::mouseMoveEvent(QMouseEvent *event)
 {
     for (QList<OCGuiObject*>::iterator i = mObjects.begin();i != mObjects.end();i++)

@@ -5,6 +5,7 @@
 #include <QPixmap>
 #include "time.h"
 #include "ocgui.h"
+#include "ocguibutton.h"
 
 class MenuScreenState : public ScreenState
 {

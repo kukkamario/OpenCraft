@@ -14,20 +14,23 @@ MenuScreenState::MenuScreenState(QObject *parent)
     mFPS = 0;
     mFPSCounter = 0;
     mLastTime = clock();
+    mButton = new OCGuiButton(this);
+    mButton->setGeometry(40,40,200,200);
+    mGui.add(mButton);
 }
 
 MenuScreenState::~MenuScreenState()
 {
-
+    //Ei tarvitse poistaa nappia kun mGui hoitaa
 }
 
 void MenuScreenState::load()
 {
     if (!mLoaded)
     {
-        mButtonTexture = new QPixmap("game/gfx/buttontexture.png");
-        mButton = new OCGuiButton(mButtonTexture, 0, 0, 100, 30);
-        mGui.add(mButton);
+        mButtonTexture = new QPixmap("gfx/buttontexture.png");
+        mButton->setTexture(mButtonTexture);
+
     }
 }
 
@@ -36,7 +39,6 @@ void MenuScreenState::unload()
     if (mLoaded)
     {
         delete mButtonTexture;
-        delete mButton;
     }
 }
 
@@ -139,7 +141,7 @@ void MenuScreenState::paintEvent(MainWindow *mainWindow)
     p.setBackgroundMode(Qt::TransparentMode);
     p.drawText(200,200,QString("QPainter: FPS:")+QString::number(mFPS));
 
-
+    mGui.paintEvent(&p);
 
     p.end();
     mFPSCounter++;
