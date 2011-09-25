@@ -1,5 +1,7 @@
 #include "menuscreenstate.h"
-#include <QImage>
+#include "ocgui.h"
+#include "ocguibutton.h"
+#include <QPixmap>
 #include "glinclude/glinclude.h"
 #include "mainwindow.h"
 
@@ -24,6 +26,7 @@ void MenuScreenState::load()
 {
     if (!mLoaded)
     {
+        QPixmap *img = new QPixmap("Game/gfx/buttontexture.png");
     }
 }
 
@@ -31,7 +34,7 @@ void MenuScreenState::unload()
 {
     if (mLoaded)
     {
-
+        delete *img;
     }
 }
 
@@ -90,7 +93,7 @@ void MenuScreenState::paintEvent(MainWindow *mainWindow)
     }
 
     QPainter p(mainWindow);
-
+    QPainter img();
     glPushAttrib(GL_ALL_ATTRIB_BITS);
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
@@ -103,6 +106,11 @@ void MenuScreenState::paintEvent(MainWindow *mainWindow)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
+    QRect pos;
+    pos.setX(200);
+    pos.setY(150);
+
+    OCGuiButton nappi(img, pos);
 
     //Tähän kaikki opengl taustan piirto...
     gluLookAt(0,0,5,0,0,0,0,1,0);
