@@ -1,7 +1,6 @@
 #include "menuscreenstate.h"
 #include "ocgui.h"
 #include "ocguibutton.h"
-#include <QPixmap>
 #include "glinclude/glinclude.h"
 #include "mainwindow.h"
 
@@ -26,7 +25,9 @@ void MenuScreenState::load()
 {
     if (!mLoaded)
     {
-        QPixmap *img = new QPixmap("Game/gfx/buttontexture.png");
+        mButtonTexture = new QPixmap("game/gfx/buttontexture.png");
+        mButton = new OCGuiButton(mButtonTexture, 0, 0, 100, 30);
+        mGui.add(mButton);
     }
 }
 
@@ -34,7 +35,8 @@ void MenuScreenState::unload()
 {
     if (mLoaded)
     {
-        delete *img;
+        delete mButtonTexture;
+        delete mButton;
     }
 }
 
@@ -93,6 +95,10 @@ void MenuScreenState::paintEvent(MainWindow *mainWindow)
     }
 
     QPainter p(mainWindow);
+
+
+
+
     QPainter img();
     glPushAttrib(GL_ALL_ATTRIB_BITS);
     glMatrixMode(GL_PROJECTION);
@@ -106,19 +112,16 @@ void MenuScreenState::paintEvent(MainWindow *mainWindow)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    QRect pos;
-    pos.setX(200);
-    pos.setY(150);
 
-    OCGuiButton nappi(img, pos);
 
     //Tähän kaikki opengl taustan piirto...
     gluLookAt(0,0,5,0,0,0,0,1,0);
 
-    glBegin(GL_TRIANGLES);
+    glBegin(GL_QUADS);
         glColor3f(1,0,0);glVertex3f(1,1,0);
         glColor3f(0,1,0);glVertex3f(-1,1,0);
-        glColor3f(0,0,1);glVertex3f(0,-1,0);
+        glColor3f(0,0,1);glVertex3f(-1,-1,0);
+        glColor3f(1,0,1);glVertex3f(1,-1,0);
     glEnd();
 
 
@@ -135,6 +138,8 @@ void MenuScreenState::paintEvent(MainWindow *mainWindow)
 
     p.setBackgroundMode(Qt::TransparentMode);
     p.drawText(200,200,QString("QPainter: FPS:")+QString::number(mFPS));
+
+
 
     p.end();
     mFPSCounter++;

@@ -2,6 +2,7 @@
 #define MENUSCREENSTATE_H
 #include "screenstate.h"
 #include "gltexture2d.h"
+#include <QPixmap>
 #include "time.h"
 #include "ocgui.h"
 
@@ -34,10 +35,11 @@ private:
     int mFPSCounter;
     clock_t mLastTime;
     OCGui mGui;
-
     bool mLoaded;
     float mWindowW;
     float mWindowH;
+    QPixmap *mButtonTexture;
+    OCGuiButton *mButton;
 };
 
 #endif // MENUSCREENSTATE_H
