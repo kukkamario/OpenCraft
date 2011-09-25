@@ -11,10 +11,15 @@ void OCGuiButton::setTexture(QPixmap *texture){
     mImage = texture;
 }
 
+void OCGuiButton::setTitle(QString title){
+    mTitle = title;
+}
+
 void OCGuiButton::paint(QPainter *p)
 {
     Q_ASSERT(mImage);
     p->drawPixmap(mRect, *mImage);
+    p->drawText(mRect, mTitle, QTextOption(Qt::AlignCenter));
 }
 
 void OCGuiButton::update()

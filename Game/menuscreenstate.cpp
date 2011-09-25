@@ -30,7 +30,7 @@ void MenuScreenState::load()
     {
         mButtonTexture = new QPixmap("gfx/buttontexture.png");
         mButton->setTexture(mButtonTexture);
-
+        mButton->setTitle("Hello world!");
     }
 }
 
