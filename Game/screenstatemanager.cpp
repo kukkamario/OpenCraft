@@ -52,6 +52,7 @@ bool ScreenStateManager::init(int ww, int wh, MainWindow *mainwindow)
     {
         if (!(*i)->init(mainwindow)) return false;
         connect(*i,SIGNAL(repaintGL()),mainwindow,SLOT(updateGL()));
+        connect(*i,SIGNAL(updateWindow()),mainwindow,SLOT(update()));
     }
 
     mActiveScreenState->load();

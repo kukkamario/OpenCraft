@@ -1,6 +1,7 @@
 #ifndef OCGUI_H
 #define OCGUI_H
 #include "ocguiobject.h"
+#include "gamescreenstate.h"
 #include <QList>
 class QPainter;
 class OCGui:public QObject

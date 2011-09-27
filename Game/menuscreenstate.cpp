@@ -15,7 +15,9 @@ MenuScreenState::MenuScreenState(QObject *parent)
     mFPSCounter = 0;
     mLastTime = clock();
     mButton = new OCGuiButton(this);
-    mButton->setGeometry(40,40,200,200);
+    mButton->setGeometry(40,40,144,64);
+
+
     mGui.add(mButton);
 }
 
@@ -29,8 +31,10 @@ void MenuScreenState::load()
     if (!mLoaded)
     {
         mButtonTexture = new QPixmap("gfx/buttontexture.png");
-        mButton->setTexture(mButtonTexture);
+        mButtonTextureDown = new QPixmap("gfx/buttontexture_down.png");
+        mButton->setTexture(mButtonTexture, mButtonTextureDown);
         mButton->setTitle("Hello world!");
+        connect(mButton, SIGNAL(askRepaint()), this, SIGNAL(updateWindow()));
     }
 }
 
@@ -39,6 +43,7 @@ void MenuScreenState::unload()
     if (mLoaded)
     {
         delete mButtonTexture;
+        delete mButtonTextureDown;
     }
 }
 

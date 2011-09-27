@@ -3,6 +3,7 @@
 #include "screenstate.h"
 #include "gltexture2d.h"
 #include <QPixmap>
+#include <QList>
 #include "time.h"
 #include "ocgui.h"
 #include "ocguibutton.h"
@@ -40,6 +41,7 @@ private:
     float mWindowW;
     float mWindowH;
     QPixmap *mButtonTexture;
+    QPixmap *mButtonTextureDown;
     OCGuiButton *mButton;
 };
 
