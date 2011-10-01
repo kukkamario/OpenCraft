@@ -43,7 +43,10 @@ public:
 
     bool isAir()const{return mIsAir;}
     ShaderProgramHandle shaderProgram()const{return mShaderProgram;}
-    BlockTextureHandle texture()const{return mTexture;}
+    void setTexture(GLuint texture){mTexture = texture;}
+    GLuint texture()const{return mTexture;}
+    void setLightEmiting(float r,float g, float b){mLightEmiting[0] = r;mLightEmiting[1] = g;mLightEmiting[2] = b;}
+    float *lightEmiting()const{return mLightEmiting;}
 private:
     QString mName;
     ushort mIndex;
@@ -52,8 +55,9 @@ private:
     int mIndexCount;
     GLenum mDrawMode;
     GLenum mIndexType;
+    float mLightEmiting[3];
     ShaderProgramHandle mShaderProgram;
-    BlockTextureHandle mTexture;
+    GLuint mTexture;
     bool mIsAir;
 };
 

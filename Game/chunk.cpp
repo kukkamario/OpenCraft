@@ -33,7 +33,6 @@ void Chunk::draw()
 //    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     ShaderProgramHandle ptr = INVALID_SHADER_PROGRAM_PTR;
     ShaderProgram *shaderProgram = 0;
-    BlockTextureHandle texturePtr = 0;
     GLuint texture = 0;
     int x = 0;
     int y = 0;
@@ -57,68 +56,17 @@ void Chunk::draw()
                 glVertexAttribPointer(GLSL_POS_NORMAL,3,GL_FLOAT,GL_FALSE,28,(void*)28);
 
             }
-            if (blockType->texture() != texturePtr)
+            if (blockType->texture() != texture)
             {
-
+                glBindTexture(blockType->texture());
+                texture = blockType->texture();
             }
 
             glBindBufferARB(GL_ARRAY_BUFFER_ARB, blockType->vertexVBO());//Lista pisteistä ja väreistä
             glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, blockType->indexVBO()); // indeksit pisteisiin
-
-
-
-
-
-
-
-
-
             glDrawElements(blockType->drawMode(), blockType->indexCount(), blockType->indexType(), 0);
         }
     }
 }
 
 
-
-
-//void Chunk::generateVBOs()
-//{
-//    for (int i = 0;i != MAX_BLOCK_GROUP_DATAS;i++)
-//    {
-//        mDrawMap[i]->reset();
-//    }
-//    for (int i = 0;i != CHUNK_BLOCK_COUNT;i++)
-//    {
-//        Block block = mBlocks[i];
-//        if (block.mBlockType != 0)
-//        {
-//            if (block.mBlockVisibilityFlags != Block::V_Hidden)
-//            {
-//                mDrawMap[block.mBlockGroup]->mBlocks.append(mBlocks + i * sizeof(Block));
-
-//                mDrawMap[block.mBlockGroup]->mVerticesTotal += mOwner->blockTypeManager()->getBlockType(block)->countVertices();
-//                continue;
-//            }
-//        }
-//    }
-
-//    for (int i = 0;i != MAX_BLOCK_GROUP_DATAS;i++)
-//    {
-//        BlockGroupData *drawmap = mDrawMap[i];
-//        int blocks = drawmap->mBlocks.count();
-//        if (blocks != 0)
-//        {
-//            glGenBuffersARB(1,&(drawmap->mVBO));
-//            glBindBufferARB(GL_ARRAY_BUFFER_ARB,drawmap->mVBO);
-
-//            BlockVertex *vertices = new BlockVertex[drawmap->mVerticesTotal];
-//            for (QList<Block*>::const_iterator i = drawmap->mBlocks.constBegin();i != drawmap->mBlocks.constEnd();i++)
-//            {
-
-//            }
-
-
-//            glBufferDataARB(GL_ARRAY_BUFFER_ARB,drawmap->mVerticesTotal * sizeof(BlockVertex),vertices,GL_STATIC_DRAW_ARB);
-//        }
-//    }
-//}

@@ -46,24 +46,10 @@
      <string>Settings</string>
     </property>
     <addaction name="actionTexture"/>
+    <addaction name="actionLoad_shader"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuSettings"/>
-  </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
-  <widget class="VertexDataDockWidget" name="vertexDataDockWidget">
-   <attribute name="dockWidgetArea">
-    <number>4</number>
-   </attribute>
-   <widget class="QWidget" name="dockWidgetContents_2"/>
   </widget>
   <action name="actionNew">
    <property name="text">
@@ -92,7 +78,12 @@
   </action>
   <action name="actionTexture">
    <property name="text">
-    <string>Texture...</string>
+    <string>Load texture...</string>
+   </property>
+  </action>
+  <action name="actionLoad_shader">
+   <property name="text">
+    <string>Load shaderprogram...</string>
    </property>
   </action>
  </widget>
@@ -102,12 +93,6 @@
    <class>BlockRenderer</class>
    <extends>QWidget</extends>
    <header>blockrenderer.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>VertexDataDockWidget</class>
-   <extends>QDockWidget</extends>
-   <header>vertexdatadockwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

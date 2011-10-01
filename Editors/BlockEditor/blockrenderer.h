@@ -2,6 +2,7 @@
 #define BLOCKRENDERER_H
 
 #include <QGLWidget>
+#include <QGLShaderProgram>
 #include "blockvertex.h"
 
 class BlockRenderer : public QGLWidget
@@ -15,6 +16,7 @@ public slots:
 
 private:
     BlockVertex *mVertices;
+    QGLShaderProgram *mShaderProgram;
     int mVerticeCount;
 };
 

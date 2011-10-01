@@ -31,36 +31,6 @@ struct ChunkCoord
     }
 };
 
-//struct BlockGroupData
-//{
-//    struct BlockPosData
-//    {
-//        Block* ptr;
-//        uchar x;
-//        uchar y;
-//        uchar z;
-//    };
-
-//    BlockGroupData(){mVBO = 0;}
-//    ~BlockGroupData()
-//    {
-//        if (mVBO)
-//        {
-//            glDeleteBufferARB(1,&mVBO);
-//        }
-//    }
-//    void reset()
-//    {
-//        if (mVBO)
-//        {
-//            glDeleteBufferARB(1,&mVBO);
-//        }
-//    }
-//    QList<Block*> mBlocks;
-//    GLuint mVBO;
-//    int mVerticesTotal;
-//    QGLShaderProgram *mShaderProgram;
-//};
 
 struct BlockCoord
 {

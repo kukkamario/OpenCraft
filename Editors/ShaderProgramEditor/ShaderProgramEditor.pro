@@ -11,8 +11,14 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    ../../Public/shaderprogrammanager.cpp \
+    ../../Public/shaderprogram.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    ../../Public/shaderprogrammanager.h \
+    ../../Public/shaderprogram.h
 
 FORMS    += mainwindow.ui
+
+

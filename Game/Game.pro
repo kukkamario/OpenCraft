@@ -30,7 +30,7 @@ SOURCES += main.cpp \
     blocktypemanager.cpp \
     errorhandler.cpp \
     chunkedmap.cpp \
-    shaderprogrammanager.cpp \
+    ../Public/shaderprogrammanager.cpp \
     mainwindow.cpp \
     screenstate.cpp \
     ocguibutton.cpp \
@@ -39,7 +39,7 @@ SOURCES += main.cpp \
     ocgui.cpp \
     AudioEngine/ocsound.cpp \
     AudioEngine/ocmusic.cpp \
-    shaderprogram.cpp \
+    ../Public/shaderprogram.cpp \
     blocktexturehandler.cpp
 
 HEADERS += \
@@ -57,7 +57,7 @@ HEADERS += \
     block.h \
     errorhandler.h \
     chunkedmap.h \
-    shaderprogrammanager.h \
+    ../Public/shaderprogrammanager.h \
     precompiled_header.h \
     mainwindow.h \
     ocguibutton.h \
@@ -67,7 +67,7 @@ HEADERS += \
     ocgui.h \
     AudioEngine/ocsound.h \
     AudioEngine/ocmusic.h \
-    shaderprogram.h \
+    ../Public/shaderprogram.h \
     blocktexturehandler.h
 
 

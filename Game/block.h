@@ -21,7 +21,7 @@ public:
     Block(){}
     ushort mBlockType;
     uchar mBlockVisibilityFlags;
-    uchar mLight;
+    float mLight[3];
     uchar mBlockGroup;
     char mBlockTypeData[2];
 };

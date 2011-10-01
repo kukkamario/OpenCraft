@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->actionOpen_2,SIGNAL(triggered()),this,SLOT(openVertexShader()));
     connect(ui->actionOpen_3,SIGNAL(triggered()),this,SLOT(openFragmentShader()));
+    connect(ui->actionBuild,SIGNAL(triggered()),this,SLOT(tryBuild()));
 
     this->setWindowTitle("OpenCraft shaderprogram editor - unnamed[*]");
 

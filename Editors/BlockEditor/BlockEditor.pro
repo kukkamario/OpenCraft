@@ -12,16 +12,16 @@ CONFIG += qt
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    vertexdatadockwidget.cpp \
     blockrenderer.cpp
 
 HEADERS  += mainwindow.h \
-    vertexdatadockwidget.h \
     blockrenderer.h \
     blockvertex.h
 
-FORMS    += mainwindow.ui \
-    vertexdatadockwidget.ui
+FORMS    += mainwindow.ui
+
+
+
 
 
 

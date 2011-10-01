@@ -134,9 +134,16 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionOpen_3"/>
     <addaction name="actionSave_3"/>
    </widget>
+   <widget class="QMenu" name="menuTry_to_build">
+    <property name="title">
+     <string>Build</string>
+    </property>
+    <addaction name="actionBuild"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuVertex_shader"/>
    <addaction name="menuFragment_shader"/>
+   <addaction name="menuTry_to_build"/>
   </widget>
   <action name="actionNew">
    <property name="text">
@@ -181,6 +188,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionSave_3">
    <property name="text">
     <string>Save...</string>
+   </property>
+  </action>
+  <action name="actionBuild">
+   <property name="text">
+    <string>Build...</string>
    </property>
   </action>
  </widget>

@@ -2,18 +2,18 @@
 #define TEXTUREHANDLER_H
 #include "gltexture2d.h"
 #include <QGLWidget>
-typedef uchar BlockTextureHandle;
+#define MAX_TEXTURES 256
 
 class BlockTextureHandler
 {
 public:
     BlockTextureHandler(QGLWidget *widget);
-    BlockTextureHandle loadTexture(const QString &path);
-    GLuint getTexture(BlockTextureHandle id)const{return mTextureArray[id];}
-
+    ~BlockTextureHandler();
+    GLuint loadTexture(const QString &path);
 private:
-    GLuint mTextureArray[256];
+    GLuint mTextureArray[MAX_TEXTURES];
     QGLWidget *mContext;
+    int mCurrentIndex;
 };
 
 #endif // TEXTUREHANDLER_H

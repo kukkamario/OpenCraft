@@ -41,6 +41,7 @@ private slots:
 
     void saveVertexShader();
     void saveFragmentShader();
+    void tryBuild();
 };
 
 #endif // MAINWINDOW_H

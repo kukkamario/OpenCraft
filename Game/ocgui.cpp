@@ -51,7 +51,7 @@ void OCGui::mouseReleaseEvent(QMouseEvent *event)
     for (QList<OCGuiObject*>::iterator i = mObjects.begin();i != mObjects.end();i++)
     {
         OCGuiObject *object = *i;
-        if (object->rect().contains(event->pos())) //Jos hiiri objectin päällä
+        //if (object->rect().contains(event->pos())) //Jos hiiri objectin päällä
         {
             object->mouseReleaseEvent(event);
         }
