@@ -22,6 +22,7 @@ bool Game::init()
     if (mMainWindow == 0) //Aika turha tarkitus...
     {
         mMainWindow = new MainWindow();
+        connect(mMainWindow,SIGNAL(destroyed()),this,SLOT(mainWindowDeleted()));
     }
 }
 
@@ -33,4 +34,9 @@ void Game::launch()
 void Game::destroy()
 {
     if (mMainWindow) delete mMainWindow;
+}
+
+void Game::mainWindowDeleted()
+{
+    mMainWindow = 0;
 }

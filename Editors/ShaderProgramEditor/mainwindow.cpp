@@ -309,3 +309,8 @@ void MainWindow::saveFragmentShader()
 
     }
 }
+
+void MainWindow::tryBuild()
+{
+    //Kesken
+}

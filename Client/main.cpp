@@ -4,10 +4,12 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    int returnCode = -1;
     if (Game::instance()->init())//Jos alustus onnistui
     {
         Game::instance()->launch();//Käynnistetään peli
+        returnCode = a.exec();//Aloitetaan eventlooppi
     }
     Game::instance()->destroy();//Tuhotaan kaikki
-    return a.exec();//Aloitetaan eventlooppi
+    return returnCode;
 }
