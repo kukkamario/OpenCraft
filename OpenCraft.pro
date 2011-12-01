@@ -1,5 +1,6 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    Game \
-    Editors
+    Editors \
+    Client
+

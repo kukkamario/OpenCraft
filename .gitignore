@@ -1,2 +1,6 @@
 
 *.user
+/Makefile
+/Client/Makefile
+/Client/Makefile.Debug
+/Client/Makefile.Release
