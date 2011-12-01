@@ -4,21 +4,21 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui opengl
 
 TARGET = ShaderProgramEditor
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    ../../Public/shaderprogrammanager.cpp \
-    ../../Public/shaderprogram.cpp
+        mainwindow.cpp
 
-HEADERS  += mainwindow.h \
-    ../../Public/shaderprogrammanager.h \
-    ../../Public/shaderprogram.h
+HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
+
+
+
+
 
 
