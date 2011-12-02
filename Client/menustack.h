@@ -1,6 +1,6 @@
 #ifndef MENUSTACK_H
 #define MENUSTACK_H
-
+#include <QStackedWidget>
 
 #include <QStackedWidget>
 #include <QWidget>
@@ -18,12 +18,17 @@ public:
         eModsAndTextures,
         eVideoOptions,
         eSoundOptions,
-        eNetConnectionOptions
+        eNetConnectionOptions,
+        eMenuStateCount
     };
 
+    void openMenu(MenuState menu);
+    void hideMenu();
 signals:
 
 public slots:
+private:
+    QWidget *mMenus[eMenuStateCount];
 
 };
 
