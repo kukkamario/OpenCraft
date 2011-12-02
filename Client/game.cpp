@@ -1,5 +1,5 @@
 #include "game.h"
-
+#include "mainwindow.h"
 Game::Game()
     :mMainWindow(0)
 {
@@ -24,6 +24,7 @@ bool Game::init()
         mMainWindow = new MainWindow;
         connect(mMainWindow,SIGNAL(destroyed()),this,SLOT(mainWindowDeleted()));
     }
+    return 1;
 }
 
 void Game::launch()

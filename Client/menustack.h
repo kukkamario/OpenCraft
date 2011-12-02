@@ -3,10 +3,11 @@
 #include <QStackedWidget>
 
 #include <QStackedWidget>
-#include <QWidget>
+
 class MenuStack : public QStackedWidget
 {
     Q_OBJECT
+
 public:
     explicit MenuStack(QWidget *parent = 0);
     enum MenuState{
@@ -21,6 +22,8 @@ public:
         eNetConnectionOptions,
         eMenuStateCount
     };
+    void insertWidget(int index ,QWidget* widget);
+    void widget(int index);
 
     void openMenu(MenuState menu);
     void hideMenu();
