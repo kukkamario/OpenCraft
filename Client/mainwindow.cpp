@@ -1,8 +1,10 @@
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QGLWidget(parent)
+    : QGLWidget(parent) , mMainMenu(parent)
 {
+
+
 }
 
 MainWindow::~MainWindow()
