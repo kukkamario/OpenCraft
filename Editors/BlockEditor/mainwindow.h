@@ -14,6 +14,11 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+public slots:
+
+        void openBlock();
+        void saveBlock();
+        void saveBlockAs();
 
 private:
     Ui::MainWindow *ui;
