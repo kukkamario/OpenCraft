@@ -13,16 +13,16 @@ PRECOMPILED_HEADER = pch.h
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     game.cpp \
     menustack.cpp \
     mainmenuwidget.cpp \
     chunkedmap.cpp \
     chunk.cpp \
     block.cpp \
-    blockadditionaldata.cpp
+    blockadditionaldata.cpp \
+    mainwindow.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     game.h \
     chunkedmap.h \
     chunk.h \
@@ -30,13 +30,32 @@ HEADERS  += mainwindow.h \
     block.h \
     chunkposition.h \
     blockadditionaldata \
-    menustack.h \
     mainmenuwidget.h \
-    blockadditionaldata.h
+    blockadditionaldata.h \
+    menustack.h \
+    mainwindow.h
 
 
 FORMS += \
     mainmenuwidget.ui
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

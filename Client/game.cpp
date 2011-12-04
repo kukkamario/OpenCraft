@@ -21,7 +21,7 @@ bool Game::init()
 {
     if (mMainWindow == 0) //Aika turha tarkitus...
     {
-        mMainWindow = new MainWindow();
+        mMainWindow = new MainWindow;
         connect(mMainWindow,SIGNAL(destroyed()),this,SLOT(mainWindowDeleted()));
     }
     return 1;
