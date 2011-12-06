@@ -46,7 +46,7 @@ MenuStack *MainWindow::openMenus()
     {
         setScene(new MenuStack);
     }
-    (MenuStack*)scene();
+    return (MenuStack*)scene();
 }
 
 void MainWindow::closeMenus()
