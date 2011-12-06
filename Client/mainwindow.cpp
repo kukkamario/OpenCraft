@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QGLWidget(parent)
 {
     setAttribute(Qt::WA_OpaquePaintEvent);
-    //mMenuStack = new MenuStack(this);
+    mMenuStack = new MenuStack(this);
 
 }
 
