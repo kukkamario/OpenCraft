@@ -3,7 +3,10 @@
 
 #include <QtOpenGL/QGLWidget>
 #include "menustack.h"
-class MainWindow : public QGLWidget
+#include <QGraphicsView>
+#include <QGraphicsProxyWidget>
+
+class MainWindow : public QGraphicsView
 {
     Q_OBJECT
 
@@ -12,13 +15,11 @@ public:
     ~MainWindow();
 
 private:
+    MenuStack *openMenus();
+    void closeMenus();
+    void drawBackground(QPainter *painter, const QRectF &rect);
 
     void resizeEvent(QResizeEvent *e);
-
-    void resizeGL(int w, int h);
-    void paintGL();
-    void initializeGL();
-    MenuStack *mMenuStack;
 };
 
 #endif // MAINWINDOW_H

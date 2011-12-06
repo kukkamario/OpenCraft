@@ -1,35 +1,39 @@
 #include "menustack.h"
 #include <QWidget>
 #include "mainmenuwidget.h"
-MenuStack::MenuStack(QWidget *parent) :
-    QStackedWidget(parent)
+MenuStack::MenuStack(QObject *parent) :
+    QGraphicsScene(parent),
+    mCurrentMenuState(eMenuStateCount), //Laitetaan sellaiseksi jota ei voi valita...
+    mCurrent(0)
 {
-    memset(mMenus,0,sizeof(QWidget*)*eMenuStateCount);//Nollataan taulukko, kun se ei ole vielä täynnä, niin että voi tarkistaa onko widgetti olemassa
 
-    //setAttribute(Qt::WA_OpaquePaintEvent);//Läpinäkyvä tausta
-
-    mMenus[0] = new MainMenuWidget;
-    this->addWidget(mMenus[0]);
-
-
-    //Muut valikot vastaavasti tähän vaa..
-
-
-    this->setCurrentIndex(0);
 }
 
 
-void MenuStack::openMenu(MenuState menu)
+void MenuStack::selectMenu(MenuState menu)
 {
-    setEnabled(true);//Varmistetaan että valikot varmasti ovat näkyvissä
-    setVisible(true);
-    setCurrentIndex((int)menu); //Valitaa näytettäväksi parametrina annettu
+    if (mCurrentMenuState != menu) // Varmistetaan että ei tehdä turhaa työtä
+    {
+        if (mCurrent != 0) //Mikäli on ennestään jokin jo valittuna
+        {
+            removeItem((QGraphicsItem*)mCurrent); //Poistetaan se
+        }
+        mCurrentMenuState = menu;
+
+
+        //Tähän vaan kaikki vaihtoehdot
+        switch (mCurrentMenuState)
+        {
+        case eMainMenu:
+            mCurrent = this->addWidget(new MainMenuWidget);
+            break;
+        }
+    }
 }
 
 
-void MenuStack::hideMenu()
+void MenuStack::resize(int w, int h)
 {
-    //Piilotetaan valikko
-    setEnabled(false);
-    setVisible(true);
+    setSceneRect(0,0,w,h);
+
 }

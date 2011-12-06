@@ -1,13 +1,17 @@
 #include "mainwindow.h"
 #include <QResizeEvent>
 #include <QPushButton>
+#include <QGraphicsScene>
+#include "glcontext.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QGLWidget(parent)
+    : QGraphicsView(parent)
 {
     setAttribute(Qt::WA_OpaquePaintEvent);
-    mMenuStack = new MenuStack(this);
+    this->setViewport(new GLContext);
+    setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 
+    openMenus()->selectMenu(MenuStack::eMainMenu);
 }
 
 MainWindow::~MainWindow()
@@ -19,22 +23,34 @@ MainWindow::~MainWindow()
 
 void MainWindow::resizeEvent(QResizeEvent *e)
 {
-    mMenuStack->setGeometry(QRect(QPoint(),e->size()));
+    ((MenuStack*)scene())->resize(e->size().width(),e->size().height());
 }
 
 
-void MainWindow::resizeGL(int w, int h)
-{
-    glViewport(0,0,w,h);
-}
 
-void MainWindow::initializeGL()
+
+void MainWindow::drawBackground(QPainter *painter, const QRectF &rect)
 {
     glEnable(GL_DEPTH_TEST);
     glClearColor(1.0f,0,0,0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+
+
+    glDisable(GL_DEPTH_TEST);
 }
 
-void MainWindow::paintGL()
+MenuStack *MainWindow::openMenus()
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    if (!scene())
+    {
+        setScene(new MenuStack);
+    }
+    (MenuStack*)scene();
+}
+
+void MainWindow::closeMenus()
+{
+    if (scene()) delete scene();
+    setScene(0);
 }

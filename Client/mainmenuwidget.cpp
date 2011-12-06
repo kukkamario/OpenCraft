@@ -6,6 +6,7 @@ MainMenuWidget::MainMenuWidget(QWidget *parent) :
     ui(new Ui::MainMenuWidget)
 {
     ui->setupUi(this);
+    this->setAttribute(Qt::WA_OpaquePaintEvent);
 }
 
 MainMenuWidget::~MainMenuWidget()

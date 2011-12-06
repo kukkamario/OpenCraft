@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     chunk.cpp \
     block.cpp \
     blockadditionaldata.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    glcontext.cpp
 
 HEADERS  += \
     game.h \
@@ -33,11 +34,14 @@ HEADERS  += \
     mainmenuwidget.h \
     blockadditionaldata.h \
     menustack.h \
-    mainwindow.h
+    mainwindow.h \
+    glcontext.h
 
 
 FORMS += \
     mainmenuwidget.ui
+
+
 
 
 

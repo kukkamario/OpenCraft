@@ -1,15 +1,13 @@
 #ifndef MENUSTACK_H
 #define MENUSTACK_H
-#include <QStackedWidget>
+#include <QGraphicsScene>
 
-#include <QStackedWidget>
-
-class MenuStack : public QStackedWidget
+class MenuStack : public QGraphicsScene
 {
     Q_OBJECT
 
 public:
-    explicit MenuStack(QWidget *parent = 0);
+    explicit MenuStack(QObject *parent = 0);
     enum MenuState{
         eMainMenu = 0,
         eSinglePlayer,
@@ -25,13 +23,15 @@ public:
     void insertWidget(int index ,QWidget* widget);
     void widget(int index);
 
-    void openMenu(MenuState menu);
-    void hideMenu();
+    void selectMenu(MenuState menu);
+    void resize(int w,int h);
 signals:
+
 
 public slots:
 private:
-    QWidget *mMenus[eMenuStateCount];
+    QGraphicsProxyWidget *mCurrent;
+    MenuState mCurrentMenuState;
 
 };
 
