@@ -1,5 +1,7 @@
 #include "game.h"
 #include "mainwindow.h"
+#include "menustack.h"
+
 Game::Game()
     :mMainWindow(0)
 {
@@ -40,4 +42,14 @@ void Game::destroy()
 void Game::mainWindowDeleted()
 {
     mMainWindow = 0;
+}
+
+MenuStack *Game::openMenus()
+{
+    return mMainWindow->openMenus();
+}
+
+void Game::closeMenus()
+{
+    mMainWindow->closeMenus();
 }

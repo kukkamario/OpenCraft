@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
-#include "mainwindow.h"
-
+class MainWindow;
+class MenuStack;
 class Game:public QObject
 {
     Q_OBJECT
@@ -10,10 +10,13 @@ public:
     bool init();
     void launch();
     void destroy();
+
 private:
     Game();
     ~Game();
     MainWindow *mMainWindow;
+    MenuStack *openMenus();
+    void closeMenus();
 private slots:
     void mainWindowDeleted();
 };

@@ -14,9 +14,10 @@ public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-private:
     MenuStack *openMenus();
     void closeMenus();
+private:
+
     void drawBackground(QPainter *painter, const QRectF &rect);
 
     void resizeEvent(QResizeEvent *e);

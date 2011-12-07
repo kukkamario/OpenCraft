@@ -2,6 +2,7 @@
 #include <QWidget>
 #include "mainmenuwidget.h"
 #include "settingsmenu.h"
+#include <QGraphicsProxyWidget>
 MenuStack::MenuStack(QObject *parent) :
     QGraphicsScene(parent),
     mCurrentMenuState(eMenuStateCount), //Laitetaan sellaiseksi jota ei voi valita...
@@ -39,7 +40,7 @@ void MenuStack::selectMenu(MenuState menu)
 void MenuStack::resize(int w, int h)
 {
     setSceneRect(0,0,w,h);
-
+    if (mCurrent) mCurrent->setGeometry(QRectF(0,0,w,h));
 }
 
 

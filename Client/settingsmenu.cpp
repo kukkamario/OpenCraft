@@ -6,7 +6,7 @@ SettingsMenu::SettingsMenu(QWidget *parent) :
     ui(new Ui::SettingsMenu)
 {
     ui->setupUi(this);
-    ui->setAttribute(Qt::WA_OpaquePaintEvent);
+    setAttribute(Qt::WA_OpaquePaintEvent);
 }
 
 SettingsMenu::~SettingsMenu()
