@@ -9,6 +9,7 @@ MainMenuWidget::MainMenuWidget(QWidget *parent) :
     ui->setupUi(this);
     this->setAttribute(Qt::WA_OpaquePaintEvent);
     connect(ui->SettingsButton, SIGNAL(clicked()), this, SLOT(toOptions()));
+    connect(ui->MultiPlayerButton, SIGNAL(clicked()), this, SLOT(toMultiPlayer()));
 }
 
 MainMenuWidget::~MainMenuWidget()
@@ -18,4 +19,8 @@ MainMenuWidget::~MainMenuWidget()
 
 void MainMenuWidget::toOptions(){
     Game::instance()->openMenus()->selectMenu(MenuStack::eOptions);
+}
+
+void MainMenuWidget::toMultiPlayer(){
+    Game::instance()->openMenus()->selectMenu(MenuStack::eMultiPlayer);
 }

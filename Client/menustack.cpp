@@ -2,6 +2,7 @@
 #include <QWidget>
 #include "mainmenuwidget.h"
 #include "settingsmenu.h"
+#include "multiplayermenu.h"
 #include <QGraphicsProxyWidget>
 MenuStack::MenuStack(QObject *parent) :
     QGraphicsScene(parent),
@@ -31,6 +32,9 @@ void MenuStack::selectMenu(MenuState menu)
             break;
         case eOptions:
             mCurrent = this->addWidget(new SettingsMenu);
+            break;
+        case eMultiPlayer:
+            mCurrent = this->addWidget(new MultiPlayerMenu);
             break;
         }
     }

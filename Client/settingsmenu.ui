@@ -142,42 +142,42 @@
    <item row="3" column="0" colspan="3">
     <layout class="QGridLayout" name="gridLayout_2">
      <item row="0" column="0">
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="spdiflabel">
        <property name="text">
         <string>Single Player Difficulty</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QRadioButton" name="radioButton_2">
+      <widget class="QRadioButton" name="EasyRadButton">
        <property name="text">
         <string>Easy</string>
        </property>
       </widget>
      </item>
      <item row="1" column="2">
-      <widget class="QRadioButton" name="radioButton_3">
+      <widget class="QRadioButton" name="MediumRadButton">
        <property name="text">
         <string>Medium</string>
        </property>
       </widget>
      </item>
      <item row="1" column="3">
-      <widget class="QRadioButton" name="radioButton_4">
+      <widget class="QRadioButton" name="HardRadButton">
        <property name="text">
         <string>Hard</string>
        </property>
       </widget>
      </item>
      <item row="1" column="4">
-      <widget class="QRadioButton" name="radioButton_5">
+      <widget class="QRadioButton" name="BrutalRadButton">
        <property name="text">
         <string>Brutal</string>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QRadioButton" name="radioButton">
+      <widget class="QRadioButton" name="PieceOfCakeRadButton">
        <property name="text">
         <string>Piece of cake</string>
        </property>
