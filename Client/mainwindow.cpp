@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 
     openMenus()->selectMenu(MenuStack::eMainMenu);
+
 }
 
 MainWindow::~MainWindow()
