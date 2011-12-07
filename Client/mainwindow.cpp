@@ -24,6 +24,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::resizeEvent(QResizeEvent *e)
 {
+
     ((MenuStack*)scene())->resize(e->size().width(),e->size().height());
 }
 

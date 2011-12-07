@@ -4,6 +4,9 @@
 #include "settingsmenu.h"
 #include "multiplayermenu.h"
 #include <QGraphicsProxyWidget>
+#include "game.h"
+#include "mainwindow.h"
+
 MenuStack::MenuStack(QObject *parent) :
     QGraphicsScene(parent),
     mCurrentMenuState(eMenuStateCount), //Laitetaan sellaiseksi jota ei voi valita...
@@ -37,12 +40,18 @@ void MenuStack::selectMenu(MenuState menu)
             mCurrent = this->addWidget(new MultiPlayerMenu);
             break;
         }
+        if (Game::instance()->mainWindow())
+        {
+            QSize newSize = Game::instance()->mainWindow()->size();
+            resize(newSize.width(),newSize.height());
+        }
     }
 }
 
 
 void MenuStack::resize(int w, int h)
 {
+
     setSceneRect(0,0,w,h);
     if (mCurrent) mCurrent->setGeometry(QRectF(0,0,w,h));
 }

@@ -12,7 +12,7 @@ public:
     void destroy();
     MenuStack *openMenus();
     void closeMenus();
-
+    MainWindow *mainWindow(){return mMainWindow;}
 private:
     Game();
     ~Game();
