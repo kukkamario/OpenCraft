@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     block.cpp \
     blockadditionaldata.cpp \
     mainwindow.cpp \
-    glcontext.cpp
+    glcontext.cpp \
+    settingsmenu.cpp
 
 HEADERS  += \
     game.h \
@@ -35,11 +36,28 @@ HEADERS  += \
     blockadditionaldata.h \
     menustack.h \
     mainwindow.h \
-    glcontext.h
+    glcontext.h \
+    settingsmenu.h
 
 
 FORMS += \
-    mainmenuwidget.ui
+    mainmenuwidget.ui \
+    settingsmenu.ui
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

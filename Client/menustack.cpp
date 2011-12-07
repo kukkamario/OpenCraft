@@ -1,6 +1,7 @@
 #include "menustack.h"
 #include <QWidget>
 #include "mainmenuwidget.h"
+#include "settingsmenu.h"
 MenuStack::MenuStack(QObject *parent) :
     QGraphicsScene(parent),
     mCurrentMenuState(eMenuStateCount), //Laitetaan sellaiseksi jota ei voi valita...
@@ -27,6 +28,9 @@ void MenuStack::selectMenu(MenuState menu)
         case eMainMenu:
             mCurrent = this->addWidget(new MainMenuWidget);
             break;
+        case eOptions:
+            mCurrent = this->addWidget(new SettingsMenu);
+            break;
         }
     }
 }
@@ -37,3 +41,5 @@ void MenuStack::resize(int w, int h)
     setSceneRect(0,0,w,h);
 
 }
+
+
