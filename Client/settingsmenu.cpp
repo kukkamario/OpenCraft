@@ -1,5 +1,7 @@
 #include "settingsmenu.h"
 #include "ui_settingsmenu.h"
+#include "menustack.h"
+#include "game.h"
 
 SettingsMenu::SettingsMenu(QWidget *parent) :
     QWidget(parent),
@@ -7,9 +9,14 @@ SettingsMenu::SettingsMenu(QWidget *parent) :
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_OpaquePaintEvent);
+    connect(ui->BackButton, SIGNAL(clicked()), this, SLOT(toMainMenu()));
 }
 
 SettingsMenu::~SettingsMenu()
 {
     delete ui;
+}
+
+void SettingsMenu::toMainMenu(){
+    Game::instance()->openMenus()->selectMenu(MenuStack::eMainMenu);
 }

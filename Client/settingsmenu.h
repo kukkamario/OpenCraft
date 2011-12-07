@@ -14,7 +14,8 @@ class SettingsMenu : public QWidget
 public:
     explicit SettingsMenu(QWidget *parent = 0);
     ~SettingsMenu();
-
+private slots:
+       void toMainMenu();
 private:
     Ui::SettingsMenu *ui;
 };

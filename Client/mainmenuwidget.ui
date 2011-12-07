@@ -23,35 +23,35 @@
    <item row="1" column="1">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="SinglePlayerButton">
        <property name="text">
         <string>Single Player</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="MultiPlayerButton">
        <property name="text">
         <string>Multi Player</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="SettingsButton">
        <property name="text">
         <string>Settings</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_5">
+      <widget class="QPushButton" name="ModsButton">
        <property name="text">
         <string>Mods</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="QuitButton">
        <property name="text">
         <string>Quit</string>
        </property>

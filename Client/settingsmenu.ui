@@ -115,22 +115,22 @@
     </layout>
    </item>
    <item row="2" column="0" colspan="3">
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <item>
+    <layout class="QGridLayout" name="gridLayout_5">
+     <item row="0" column="0">
       <widget class="QLabel" name="label_6">
        <property name="text">
         <string>Mouse Sensitivy</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="1" column="0">
       <widget class="QSlider" name="MouseSensitivySlide">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
      </item>
-     <item>
+     <item row="2" column="0">
       <widget class="QCheckBox" name="MouseInvertCheckBox">
        <property name="text">
         <string>Invert Mouse</string>
@@ -190,7 +190,7 @@
      <item row="3" column="1">
       <widget class="QPushButton" name="ApplySettings">
        <property name="text">
-        <string>Apply Changes</string>
+        <string>Set Default Settings</string>
        </property>
       </widget>
      </item>
@@ -212,13 +212,6 @@
       <widget class="QPushButton" name="VideoSetupButton">
        <property name="text">
         <string>Video Settings</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QCheckBox" name="checkBox">
-       <property name="text">
-        <string>Auto Setting Apply</string>
        </property>
       </widget>
      </item>
@@ -249,14 +242,14 @@
       </spacer>
      </item>
      <item row="1" column="1">
-      <widget class="QPushButton" name="ControlSettings">
+      <widget class="QPushButton" name="NetConnectionSettingsButton">
        <property name="text">
         <string>Net Connection Settings</string>
        </property>
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QPushButton" name="MainMenu">
+      <widget class="QPushButton" name="BackButton">
        <property name="text">
         <string>Back to Main Menu</string>
        </property>

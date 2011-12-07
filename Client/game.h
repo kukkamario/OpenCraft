@@ -2,7 +2,7 @@
 #define GAME_H
 class MainWindow;
 class MenuStack;
-class Game:public QObject
+class Game: public QObject
 {
     Q_OBJECT
 public:
@@ -10,13 +10,14 @@ public:
     bool init();
     void launch();
     void destroy();
+    MenuStack *openMenus();
+    void closeMenus();
 
 private:
     Game();
     ~Game();
     MainWindow *mMainWindow;
-    MenuStack *openMenus();
-    void closeMenus();
+
 private slots:
     void mainWindowDeleted();
 };

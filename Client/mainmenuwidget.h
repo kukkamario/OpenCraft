@@ -15,6 +15,10 @@ public:
     explicit MainMenuWidget(QWidget *parent = 0);
     ~MainMenuWidget();
 
+private slots:
+
+    void toOptions();
+
 private:
     Ui::MainMenuWidget *ui;
 };
