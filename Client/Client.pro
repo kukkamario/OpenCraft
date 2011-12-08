@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     mainwindow.cpp \
     glcontext.cpp \
     settingsmenu.cpp \
-    multiplayermenu.cpp
+    multiplayermenu.cpp \
+    singleplayermenu.cpp
 
 HEADERS  += \
     game.h \
@@ -39,13 +40,15 @@ HEADERS  += \
     mainwindow.h \
     glcontext.h \
     settingsmenu.h \
-    multiplayermenu.h
+    multiplayermenu.h \
+    singleplayermenu.h
 
 
 FORMS += \
     mainmenuwidget.ui \
     settingsmenu.ui \
-    multiplayermenu.ui
+    multiplayermenu.ui \
+    singleplayermenu.ui
 
 
 

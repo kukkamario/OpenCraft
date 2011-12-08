@@ -3,6 +3,7 @@
 #include "mainmenuwidget.h"
 #include "settingsmenu.h"
 #include "multiplayermenu.h"
+#include "singleplayermenu.h"
 #include <QGraphicsProxyWidget>
 #include "game.h"
 #include "mainwindow.h"
@@ -38,6 +39,9 @@ void MenuStack::selectMenu(MenuState menu)
             break;
         case eMultiPlayer:
             mCurrent = this->addWidget(new MultiPlayerMenu);
+            break;
+        case eSinglePlayer:
+            mCurrent = this->addWidget(new SinglePlayerMenu);
             break;
         }
         if (Game::instance()->mainWindow())

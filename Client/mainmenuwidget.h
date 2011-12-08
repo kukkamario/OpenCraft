@@ -19,6 +19,8 @@ private slots:
 
     void toOptions();
     void toMultiPlayer();
+    void toSinglePlayer();
+    void toExit();
 
 private:
     Ui::MainMenuWidget *ui;
