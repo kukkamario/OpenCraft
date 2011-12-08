@@ -10,6 +10,7 @@ SettingsMenu::SettingsMenu(QWidget *parent) :
     ui->setupUi(this);
     setAttribute(Qt::WA_OpaquePaintEvent);
     connect(ui->BackButton, SIGNAL(clicked()), this, SLOT(toMainMenu()));
+    connect(ui->ControlsButton, SIGNAL(clicked()), this, SLOT(toControlsMenu()));
 }
 
 SettingsMenu::~SettingsMenu()
@@ -20,3 +21,9 @@ SettingsMenu::~SettingsMenu()
 void SettingsMenu::toMainMenu(){
     Game::instance()->openMenus()->selectMenu(MenuStack::eMainMenu);
 }
+
+void SettingsMenu::toControlsMenu(){
+    Game::instance()->openMenus()->selectMenu(MenuStack::eControls);
+}
+
+

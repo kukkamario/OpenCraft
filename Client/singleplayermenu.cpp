@@ -21,3 +21,4 @@ SinglePlayerMenu::~SinglePlayerMenu()
 void SinglePlayerMenu::toMainMenu(){
     Game::instance()->openMenus()->selectMenu(MenuStack::eMainMenu);
 }
+

@@ -14,6 +14,7 @@ public:
         eMultiPlayer,
         ePauseMenu,
         eOptions,
+        eControls,
         eModsAndTextures,
         eVideoOptions,
         eSoundOptions,
