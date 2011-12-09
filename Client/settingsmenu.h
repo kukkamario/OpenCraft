@@ -16,6 +16,7 @@ public:
     ~SettingsMenu();
 private slots:
        void toMainMenu();
+       void toControlsMenu();
 private:
     Ui::SettingsMenu *ui;
 };
