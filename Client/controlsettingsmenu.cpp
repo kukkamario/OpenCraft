@@ -32,7 +32,6 @@ void ControlSettingsMenu::toMainMenu(){
 
 
 void ControlSettingsMenu::setForwardKey(){
-    KeyInputWidget *widget;
-    widget = new KeyInputWidget("Forward key");
-    widget->exec();
+    KeyInputWidget widget("Forward key");
+    widget.exec();
 }

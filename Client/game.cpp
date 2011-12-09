@@ -1,10 +1,17 @@
 #include "game.h"
 #include "mainwindow.h"
 #include "menustack.h"
+#include "inputsystem.h"
 
-Game::Game()
-    :mMainWindow(0)
+static Game *mInstance = 0;
+
+Game::Game(int argc, char *argv[]):
+    QApplication(argc,argv),
+    mMainWindow(0),
+    mInputSystem(0)
 {
+    if (mInstance) {qFatal("WHAAAAAAT????!!!!");exit(-1);}
+    mInstance = this;
 }
 
 Game::~Game()
@@ -13,18 +20,14 @@ Game::~Game()
     if (mMainWindow) delete mMainWindow;
 }
 
-Game *Game::instance()
-{
-    static Game mGame; //Tämä on varsinainen peli. Sitä voi olla vain yksi kpl.
-    return &mGame;
-}
-
 bool Game::init()
 {
     if (mMainWindow == 0) //Aika turha tarkitus...
     {
         mMainWindow = new MainWindow;
         connect(mMainWindow,SIGNAL(destroyed()),this,SLOT(mainWindowDeleted()));
+
+        mInputSystem = new InputSystem(this);
     }
     return 1;
 }
@@ -52,4 +55,9 @@ MenuStack *Game::openMenus()
 void Game::closeMenus()
 {
     mMainWindow->closeMenus();
+}
+
+Game *Game::instance()
+{
+    return mInstance;
 }
