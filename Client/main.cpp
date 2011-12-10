@@ -4,14 +4,14 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    //a.setGraphicsSystem("opengl");
+    QApplication::setGraphicsSystem("opengl");
+    Game g(argc, argv);
     int returnCode = -1;
-    if (Game::instance()->init())//Jos alustus onnistui
+    if (g.init())//Jos alustus onnistui
     {
-        Game::instance()->launch();//Käynnistetään peli
-        returnCode = a.exec();//Aloitetaan eventlooppi
+        g.launch();//Käynnistetään peli
+        returnCode = g.exec();//Aloitetaan eventlooppi
     }
-    Game::instance()->destroy();//Tuhotaan kaikki
+    g.destroy();//Tuhotaan kaikki
     return returnCode;
 }

@@ -1,0 +1,7 @@
+
+*.pdb
+*.vcxproj
+*.filters
+*.user
+*.suo
+*.sdf

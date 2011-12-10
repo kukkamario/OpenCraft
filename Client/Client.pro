@@ -27,7 +27,9 @@ SOURCES += main.cpp\
     singleplayermenu.cpp \
     keyinputwidget.cpp \
     controlsettingsmenu.cpp \
-    settingssystem.cpp
+    inputsystem.cpp \
+    inputkey.cpp \
+    settingssystem.h
 
 HEADERS  += \
     game.h \
@@ -47,8 +49,9 @@ HEADERS  += \
     singleplayermenu.h \
     keyinputwidget.h \
     controlsettingsmenu.h \
-    settingssystem.h
-
+    inputsystem.h \
+    inputkey.h \
+    settingssystem.cpp
 
 FORMS += \
     mainmenuwidget.ui \
@@ -56,6 +59,12 @@ FORMS += \
     multiplayermenu.ui \
     singleplayermenu.ui \
     controlsettingsmenu.ui
+
+
+
+
+
+
 
 
 
