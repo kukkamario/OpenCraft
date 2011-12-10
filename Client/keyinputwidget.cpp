@@ -2,6 +2,7 @@
 #include <QPainter>
 #include <QPoint>
 #include <QKeyEvent>
+
 KeyInputWidget::KeyInputWidget(QString title)
 {    
     this->setWindowTitle(title);
