@@ -19,7 +19,7 @@ namespace SettingsSystem{
     namespace Video{
 
     };
-
+    void saveSettings();
 };
 
 #endif // SETTINGSSYSTEM_H
